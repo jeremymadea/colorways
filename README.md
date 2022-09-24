@@ -36,7 +36,7 @@ Conventions
 ===========
 
     To the extent possible, this library treats a 'color" generically,
-    as a list of three floats between 0 and 1 inclusive.** It is up to the
+    as a list of three floats between 0 and 1 inclusive. It is up to the
     programmer to remember (or decide) whether 
 
         color = [0.0, 1.0, 0.5] 
@@ -51,16 +51,14 @@ Conventions
     255 inclusive), hexadecimal strings, and CSS keywords.
 
     Similar to the convention of using generic vec3s for colors, a 'palette' 
-    is most often meant simply as a list of vec3s.** Many of the 
+    is most often meant simply as a list of vec3s.
 
     Many of the functions in this library, particularly some conversion 
     functions, will attempt to determine whether an argument is a vec3 or a 
     palette and perform the connversion on either the single color or the whole
     palette.
 
-^^^^^^^^^^^^^^^^^
-
-    ** Important note: some color spaces (e.g. L*a*b*) are represented by
+    **Important note:** some color spaces (e.g. L*a*b*) are represented by
     three floats that are outside the [0,1] range. While intepretting an
     RGB palette as HSL might give an interesting result, interpreting a
     L*a*b palette as HSL will likely result in an error. At times, the 
