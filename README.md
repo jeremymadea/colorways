@@ -14,6 +14,7 @@ Documentation is incomplete. There are, however, a bunch of jupyter notebooks in
 
 Description
 ===========
+
     This library aims to provide a wide variety of tools for creating,
     changing, and sorting sets of colors. It might be found useful by
     desighers, game developers, data visualizers, gneerative artists, and
