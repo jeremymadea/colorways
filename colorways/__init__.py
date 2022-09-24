@@ -47,9 +47,10 @@ Conventions:
     Similar to the convention of using generic vec3s for colors, a 'palette' 
     is most often meant simply as a list of vec3s.** Many of the 
 
-    Many of the functions in this library, particularly some conversion functions, 
-    will attempt to determine whether an argument is a vec3 or a palette and 
-    perform the connversion on either the single color or the whole palette 
+    Many of the functions in this library, particularly some conversion 
+    functions, will attempt to determine whether an argument is a vec3 or a 
+    palette and perform the connversion on either the single color or the whole
+    palette.
 
 ^^^^^^^^^^^^^^^^^
 
