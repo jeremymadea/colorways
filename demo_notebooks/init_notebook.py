@@ -41,16 +41,16 @@ def show_multi_palette(*palettes, w=720, h=200, cvs=None):
     return c
 
 
-def show_hsl_color(hsl):
+def show_hsl(hsl):
     return show_color(hsl2hex(hsl))
 
-def show_hsv_color(hsv): 
+def show_hsv(hsv): 
     return show_color(hsv2hex(hsv))
 
-def show_hwb_color(hwb):
+def show_hwb(hwb):
     return show_color(hwb2hex(hwb))
 
-def show_rgb_color(rgb): 
+def show_rgb(rgb): 
     return show_color(rgb2hex(rgb))
             
 
