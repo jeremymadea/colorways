@@ -1,6 +1,7 @@
 
 """
-This module provides functions defined in the Web Content Accessibility Guidelines 2.0. 
+This module provides functions defined in the Web Content Accessibility 
+Guidelines 2.0. 
 
 Exports:
 wcag_rel_lum(rgb): Computes a color's relative luminance.

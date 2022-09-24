@@ -1,5 +1,8 @@
 from random import random, normalvariate
 from .util import clamp01
+
+"""This module provides functions for bezier curve palettes."""
+
 __all__ = [
     'quadratic_palette',
     'random_quadratic_palette',

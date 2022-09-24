@@ -1,5 +1,7 @@
 from functools import wraps
 
+"""Internally used functions."""
+
 __all__ = [
     'blend_function',
     'colpal_function',

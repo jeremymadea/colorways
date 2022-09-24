@@ -1,6 +1,8 @@
 from .internals import colpal_params_function, colpal_function
 from .conv import rgb2hsl, hsl2rgb
 
+"""This module provides functions for traditional color theory palettes."""
+
 __all__ = [
     'complement',
     'hxx_complement',

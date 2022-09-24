@@ -3,6 +3,8 @@ from .util import clamp01
 from .conv import norm2bytes, bytes2norm
 from .internals import blend_function
 
+"""This module provides functions for blending colors."""
+
 __all__ = [
     'blend_multiply',
     'blend_screen',
