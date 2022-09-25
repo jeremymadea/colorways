@@ -251,8 +251,8 @@ def random_offset_palette(n, vec3, rng, map01fn=clamp01):
     """Undocumented"""
     if map01fn is None:
         map01fn = lambda x: x
-    palette = []
-    for i in range(n):
+    palette = [vec3]
+    for i in range(n-1):
         new = list(vec3)
         new[0] = map01fn(new[0] + random() * 2 * rng - rng)
         new[1] = map01fn(new[1] + random() * 2 * rng - rng)
@@ -266,8 +266,8 @@ def value_offset_palette(n, vec3, rng, map01fn=clamp01):
     """Undocumented"""
     if map01fn is None:
         map01fn = lambda x: x
-    palette = []
-    for i in range(n):
+    palette = [vec3]
+    for i in range(n-1):
         val = sum(vec3)/3
         new = val + 2*random() * rng - rng
         ratio = new/val
