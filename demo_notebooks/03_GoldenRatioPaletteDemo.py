@@ -22,6 +22,8 @@ class GoldenRatioPaletteDemo:
         self.n = widgets.IntSlider(description="Colors", value=6, min=1, max=250, orientation='horizontal')
         self.n.observe(lambda _: self.draw(), 'value')
 
+        self.hue = widgets.FloatSlider(description="Hue:", value=0, min=0.0, max=1.0, step=1/256, orientation='horizontal')
+        self.hue.observe(lambda _: self.draw(), 'value')
 
         self.sat = widgets.FloatSlider(description="Sat:", value=0.8, min=0.0, max=1.0, step=1/256, orientation='horizontal')
         self.sat.observe(lambda _: self.draw(), 'value')
@@ -35,22 +37,28 @@ class GoldenRatioPaletteDemo:
             button_style=''
         )
 
-        self.randbut.on_click(lambda _: self.draw())
+        self.randbut.on_click(lambda _: self.randdraw())
 
-        self.palette = golden_ratio_hsl_palette(self.n.value, self.sat.value, self.lum.value)
-        display(widgets.VBox([self.n, self.sat, self.lum]))
+        self.palette = golden_ratio_hsl_palette(self.n.value, self.hue.value, self.sat.value, self.lum.value)
+        display(widgets.VBox([self.n, self.hue, self.sat, self.lum]))
         display(self.randbut)
 
+    def randdraw(self):
+        self.hue.value = random()
+        self.sat.value = random()
+        self.lum.value = random()
+        self.draw()
 
     def draw(self, new_pal=True):
         n = self.n.value
+        hue = self.hue.value
         sat = self.sat.value
         lum = self.lum.value
         width = self.width
         height = self.height
 
         if new_pal:
-            self.palette = golden_ratio_hsl_palette(n, sat, lum)
+            self.palette = golden_ratio_hsl_palette(n, hue, sat, lum)
         with hold_canvas(self.canvas):
             for i, vec3 in enumerate(self.palette):
                 self.canvas.fill_style = hsl2hex(vec3)

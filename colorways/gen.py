@@ -11,7 +11,7 @@ Exports:
     wave_palette(n, fpoa, fn=cos):
     random_wave_palette(n):
     random_fpoa():
-    golden_ratio_hsl_palette(n, sat, lum):
+    golden_ratio_hsl_palette(n, hue, sat, lum):
     theory_hsl_palette(n, o1, o2, ra1, ra2, ra3, 
     harmony_hsl_palette(n, o1, o2, ra1, ra2, ra3,
     random_offset_palette(n, vec3, rng, map01fn=clamp01):
@@ -184,11 +184,11 @@ def random_fpoa():
 
 
 
-def golden_ratio_hsl_palette(n, sat, lum):
+def golden_ratio_hsl_palette(n, hue=random(), sat=.5, lum=.5):
     """Undocumented"""
     palette = []
     phi = 0.6180339887498948482
-    hue = random()
+    #hue = random()
     for i in range(n):
         palette.append([ hue, sat, lum ])
         hue += phi
