@@ -14,7 +14,6 @@ __all__ = [
     'blend_softlight_peg',
     'blend_softlight_ill',
     'blend_divide', 
-    'blend_divide_alt', 
     'blend_lighten',
     'blend_darken',
     'blend_difference',
@@ -76,10 +75,10 @@ def blend_divide(base, blend):
 
 
 
-@blend_function
-def blend_divide_alt(base, blend):
-    """Undocumented. TODO: based partially on byte representation"""
-    return [ min(1, a/ ((b+1/256)/256) ) for a, b in zip(base, blend) ]
+#@blend_function
+#def blend_divide_alt(base, blend):
+#    """Undocumented. TODO: based on byte representation"""
+#    return [ min(1, a/ ((b+1/256)/256) ) for a, b in zip(base, blend) ]
 
 
 
