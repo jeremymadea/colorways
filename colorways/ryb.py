@@ -4,12 +4,12 @@ from .conv import (
     hsl2rgb, hsv2rgb, hwb2rgb, lab2rgb )
 
 __all__ = [
-    'rgb2ryb',
     'ryb2rgb',
     'ryb2hsl',
     'ryb2hsv',
     'ryb2hwb',
     'ryb2lab',
+    'rgb2ryb',
     'hsl2ryb',
     'hsv2ryb',
     'hwb2ryb',
