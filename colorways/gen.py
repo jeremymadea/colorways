@@ -43,7 +43,7 @@ Exports:
 
 __all__ = [
     'wave',
-    'wave_fpoa_palette',
+    'wave_fpoa_color',
     'wave_palette',
     'random_wave_palette',
     'random_fpoa',
@@ -113,7 +113,7 @@ def wave(t, freq=1.0, phase=0.0, offset=0.5, amp=0.5, fn=cos):
 
 
 
-def wave_fpoa_palette(t, fpoa, fn=cos, map01fn=clamp01):
+def wave_fpoa_color(t, fpoa, fn=cos, map01fn=clamp01):
     """Undocumented"""
     if map01fn is None:
         map01fn = lambda x: x
@@ -149,19 +149,27 @@ def wave_palette(n, fpoa, fn=cos):
     """
     palette=[]
     for i in range(n):
-        palette.append(wave_fpoa_palette(i*1.0/n, fpoa, fn, clamp01))
+        palette.append(wave_fpoa_color(i/n, fpoa, fn, clamp01))
     return palette
 
 
 
 def random_wave_palette(n):
-    """Undocumented"""
+    """Generates a wave palette from random frequency, phase, offset and 
+       amplitude parameters.
+
+       Args:
+           n: The number of colors in the return palette. 
+
+       Returns:
+           A palette. 
+    """
     return wave_palette(n, random_fpoa())
 
 
 
 def random_fpoa():
-    """Undocumented"""
+    """Generates random Frequency, Phase, Offset, and Amplitude parameters."""
     #fpoa = [[1.0, 1.0, 1.0], # Frequency  f: 0 < f (favor near 1, > 0.5, < 4)
     #        [0.0, 0.0, 0.0], # Phase:     p: 0 <= p <= 1
     #        [0.5, 0.5, 0.5], # Offset:    o: -a < o < a+1
