@@ -187,14 +187,12 @@ for key in _keyword_hexcode:
     rgb = hex2rgb(hexcode)
     rgb8 = tuple(norm2bytes(rgb))
 
-
     if rgb8 in _color_lookup:
         cdict = _color_lookup[rgb8]
         cdict.keys.append(key)
         _string_lookup[key] = cdict
         #_color_lookup[rgb8].keys.append(key)
         continue
-
 
     hsl = rgb2hsl(rgb)
     hsv = hsl2hsv(hsl)
@@ -220,7 +218,6 @@ for key in _keyword_hexcode:
     _color_lookup[rgb8] = cdict
 
 
-
 def get_named_color(key): 
     if type(key) is list:
         key = tuple(key)
@@ -237,12 +234,15 @@ def get_named_color(key):
             return None
     else: 
         return None
+
    
 def color_names_list():
     return sorted(_keyword_hexcode.keys())
 
+
 def all_named_colors(get_as='hsl'):
     return [copy(ci.__dict__[get_as]) for ci in _color_lookup.values()]
+
 
 _mp = MasterPalette(all_named_colors())
 def closest_named_color(hexcode, fn=ciede2000):
