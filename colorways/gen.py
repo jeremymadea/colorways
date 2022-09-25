@@ -12,7 +12,7 @@ Exports:
     random_wave_palette(n):
     random_fpoa():
     golden_ratio_hsl_palette(n, hue, sat, lum):
-    theory_hsl_palette(n, o1, o2, ra1, ra2, ra3, 
+    theory_hsl_palette(n, o1, o2, ra1, ra2, ra3), 
     harmony_hsl_palette(n, o1, o2, ra1, ra2, ra3,
     random_offset_palette(n, vec3, rng, map01fn=clamp01):
     value_offset_palette(n, vec3, rng, map01fn=clamp01):
@@ -296,10 +296,10 @@ def random_walk_reflection(val, mindist, maxdist):
 
 def random_walk_palette(n, vec3, minimum, maximum):
     """Undocumented"""
-    palette = []
-    new = vec3
-    for i in range(n):
-        new = list(new)
+    palette = [vec3]
+    #new = vec3
+    for i in range(n-1):
+        new = list(vec3)
         new[0] = random_walk(new[0], minimum, maximum) % 1
         new[1] = random_walk(new[1], minimum, maximum) % 1
         new[2] = random_walk(new[2], minimum, maximum) % 1
@@ -310,10 +310,10 @@ def random_walk_palette(n, vec3, minimum, maximum):
 
 def random_walk_reflection_palette(n, vec3, minimum, maximum):
     """Undocumented"""
-    palette = []
-    new = list(vec3)
-    for i in range(n):
-        new = list(new)
+    palette = [vec3]
+    #new = list(vec3)
+    for i in range(n-1):
+        new = list(vec3)
         new[0] = random_walk_reflection(new[0], minimum, maximum)
         new[1] = random_walk_reflection(new[1], minimum, maximum)
         new[2] = random_walk_reflection(new[2], minimum, maximum)
