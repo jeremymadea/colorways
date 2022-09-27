@@ -324,8 +324,8 @@ def random_walk_reflection_palette(n, vec3, minimum, maximum):
 
 def randmix_palette(n, base, weight):
     """Undocumented"""
-    palette = []
-    for i in range(n):
+    palette = [base]
+    for i in range(n-1):
         palette.append(randmix_vec3(base, weight))
     return palette
 

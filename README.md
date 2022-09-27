@@ -17,7 +17,7 @@ Description
 
     This library aims to provide a wide variety of tools for creating,
     changing, and sorting sets of colors. It might be found useful by
-    desighers, game developers, data visualizers, gneerative artists, and
+    desighers, game developers, data visualizers, generative artists, and
     other color monkeys. 
 
     Its goal is to make it easy and fun to generate pleasing and/or
@@ -56,11 +56,11 @@ Conventions
 
     Many of the functions in this library, particularly some conversion 
     functions, will attempt to determine whether an argument is a vec3 or a 
-    palette and perform the connversion on either the single color or the whole
+    palette and perform the conversion on either the single color or the whole
     palette.
 
     **Important note:** some color spaces (e.g. L*a*b*) are represented by
-    three floats that are outside the [0,1] range. While intepretting an
+    three floats that are outside the [0,1] range. While intepreting an
     RGB palette as HSL might give an interesting result, interpreting a
     L*a*b palette as HSL will likely result in an error. At times, the 
     term 'vec3' might be used where it can also refer to a L*a*b* value

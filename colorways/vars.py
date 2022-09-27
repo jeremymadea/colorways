@@ -1,10 +1,10 @@
 """
 colorways.vars
 
-Exports some color variables. These variable names differ from the CSS
-keywords. For example, the CSS keyword 'green' refers to the color with
-RGB hexcode #008000 whereas the variable 'green' defined by this module
-refers to the color with the RGB hexcode #00FF00. 
+Exports some RGB color variables. These variable names differ from the 
+CSS keywords. For example, the CSS keyword 'green' refers to the color 
+with RGB hexcode #008000 whereas the variable 'green' defined by this 
+module refers to the color with the RGB hexcode #00FF00. 
 
 Exports: 
     black       = [0.0, 0.0, 0.0]
