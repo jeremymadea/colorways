@@ -1,3 +1,4 @@
+from itertools import product
 from random import random, choice, gammavariate, normalvariate
 from math import pi, cos 
 from .util import clamp01, reflect, lspace, hxx_lspace, randmix_vec3, randvec3_partial
@@ -39,6 +40,7 @@ Exports:
     randhueval_palette = randhuelum_palette
     gradient_palette(colors, steps): 
     hue_gradient_palette(colors, steps, bigarc=False): 
+    perms_pal(pal)
 """
 
 __all__ = [
@@ -93,6 +95,10 @@ __all__ = [
 
     'gradient_palette',
     'hue_gradient_palette',
+
+    # permutations palette
+    'perms_palette'
+    
     ]
 
 
@@ -333,8 +339,8 @@ def randmix_palette(n, base, weight):
 
 def randhue_palette(n, base):
     """Undocumented"""
-    palette = []
-    for _ in range(n):
+    palette = [base]
+    for _ in range(n-1):
         palette.append(randvec3_partial( [None, base[1], base[2]]))
     return palette
 
@@ -344,8 +350,8 @@ randred_palette = randhue_palette
 
 def randsat_palette(n, base):
     """Undocumented"""
-    palette = []
-    for _ in range(n):
+    palette = [base]
+    for _ in range(n-1):
         palette.append(randvec3_partial([base[0], None, base[2]]))
     return palette
 
@@ -355,8 +361,8 @@ randwhite_palette = randsat_palette
 
 def randlum_palette(n, base):
     """Undocumented"""
-    palette = []
-    for _ in range(n):
+    palette = [base]
+    for _ in range(n-1):
         palette.append(randvec3_partial([base[0], base[1], None]))
     return palette
 
@@ -367,8 +373,8 @@ randblack_palette = randlum_palette
 
 def randsatlum_palette(n, base):
     """Undocumented"""
-    palette = []
-    for _ in range(n):
+    palette = [base]
+    for _ in range(n-1):
         palette.append(randvec3_partial([base[0], None, None]))
     return palette
 
@@ -379,8 +385,8 @@ randwhiteblack_palette = randsatlum_palette
 
 def randhuesat_palette(n, base):
     """Undocumented"""
-    palette = []
-    for _ in range(n):
+    palette = [base]
+    for _ in range(n-1):
         palette.append(randvec3_partial([None, None, base[2]]))
     return palette
 
@@ -389,8 +395,8 @@ randhuewhite_palette = randhuesat_palette
 
 def randhuelum_palette(n, base):
     """Undocumented"""
-    palette = []
-    for _ in range(n):
+    palette = [base]
+    for _ in range(n-1):
         palette.append(randvec3_partial([None, base[1], None]))
     return palette
 
@@ -428,5 +434,10 @@ def hue_gradient_palette(colors, steps, bigarc=False):
         ret += hxx_lspace(colors[i], colors[i+1], steps[i]+1, bigarc)[1:]
     return ret
 
+def perms_with_replace(n,k):
+    return product(range(n), repeat=k)
 
-
+def perms_palette(pal):
+    return [[ pal[p[0]][0], 
+              pal[p[1]][1], 
+              pal[p[2]][2] ] for p in perms_with_replace(len(pal),3)]
