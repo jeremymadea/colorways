@@ -65,15 +65,29 @@ Conventions:
 
 
     Modules:
-        conv   Conversions between color spaces and representations.
-        css    CSS named colors.
-        gen:   Palette and gradient generation functions.
-        dist:  Color distance measures. 
-        sort:  Routines for sorting palettes by various criteria. 
-        util:  Utility functions.
-        wcag:  Web Content Accessibility Guidelines color contrast.
+        bezier  Functions for bezier curve palettes.
+        blend   Functions for blending colors.
+        conv    Conversions between color spaces and representations.
+        css     CSS named colors.
+        gen     Various palette and gradient generation functions.
+        dist    Color distance measures. 
+        p3      Utilities for Processing's Python mode
+        palettes    Some predefined palettes.
+        ryb     RYB color space conversions.
+        spectra Various approximations of the visible spectrum.
+        sort:   Routines for sorting palettes by various criteria. 
+        theory  Functions for traditional color theory palettes. 
+        vars    Some color variables. These differ from CSS keywords.
+        util:   Utility functions.
+        wcag:   Web Content Accessibility Guidelines color contrast.
         masterpalette: Provides the MasterPalette class and utilities.
 
 """
+
+
+#internals.py
+#version.py
+
+
 ################################################################################
 ########################################################################

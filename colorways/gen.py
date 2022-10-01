@@ -40,7 +40,8 @@ Exports:
     randhueval_palette = randhuelum_palette
     gradient_palette(colors, steps): 
     hue_gradient_palette(colors, steps, bigarc=False): 
-    perms_pal(pal)
+    perms_palette(pal)
+    combo_palette(pal):
 """
 
 __all__ = [
