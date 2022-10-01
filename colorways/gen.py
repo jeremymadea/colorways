@@ -97,7 +97,8 @@ __all__ = [
     'hue_gradient_palette',
 
     # permutations palette
-    'perms_palette'
+    'perms_palette',
+    'combo_palette'
     
     ]
 
@@ -441,3 +442,16 @@ def perms_palette(pal):
     return [[ pal[p[0]][0], 
               pal[p[1]][1], 
               pal[p[2]][2] ] for p in perms_with_replace(len(pal),3)]
+
+def combo_palette(pal):
+    if len(pal) > 1:
+        vals = [ *pal[0], *pal[1] ]
+    else:
+        vals = [ *pal[0] ]
+    return [[ vals[p[0]], 
+              vals[p[1]], 
+              vals[p[2]]  ] for p in perms_with_replace(len(vals),3)] 
+
+
+
+
