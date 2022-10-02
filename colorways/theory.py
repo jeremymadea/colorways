@@ -26,6 +26,7 @@ def hxx_complement(base):
 
 @colpal_function
 def hxx_analogous(base):
+    """Returns a 3-color analogous palette.""" 
     return [ 
         [(base[0] - (1/6.0))%1.0, base[1], base[2]],
         list(base),
@@ -34,6 +35,7 @@ def hxx_analogous(base):
 
 @colpal_function
 def hxx_triad(base):
+    """Returns a triad palette."""
     return [ 
         [(base[0] - (1/3.0)) % 1.0, base[1], base[2]],
         list(base),
@@ -43,6 +45,7 @@ def hxx_triad(base):
 
 @colpal_function
 def hxx_complementary_pair(base):
+    """Returns a 2-color palette containing the base and its complement."""
     return [ list(base), [ (base[0] + 0.5) % 1.0, base[1], base[2] ]]
 
 

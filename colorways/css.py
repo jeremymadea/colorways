@@ -219,6 +219,7 @@ for key in _keyword_hexcode:
 
 
 def get_named_color(key): 
+    """Returns the color with the given CSS name."""
     if type(key) is list:
         key = tuple(key)
     if type(key) is tuple: 
@@ -237,15 +238,24 @@ def get_named_color(key):
 
    
 def color_names_list():
+    """Returns a sorted list of css color names."""
     return sorted(_keyword_hexcode.keys())
 
 
 def all_named_colors(get_as='hsl'):
+    """
+    Returns a list of all css named colors in the requested color space.
+    Default is hsl.
+    """
     return [copy(ci.__dict__[get_as]) for ci in _color_lookup.values()]
 
 
 _mp = MasterPalette(all_named_colors())
 def closest_named_color(hexcode, fn=ciede2000):
+    """
+    Returns the css named color closest to the color given by hexcode. The
+    distance function defaults to ciede2000.
+    """
     _mp.create_ordering('__temp', new_order_by_dist_closure(hexcode, fn))
     return get_named_color(_mp.get_rgb8(order='__temp')[0])
     

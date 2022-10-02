@@ -27,9 +27,12 @@ def _quadratic_palette(n, rabc, gabc, babc):
              _quadratic(x/n, *babc)] for x in range(n)]
 
 def random_quadratic_palette(n):
+    """Returns a random quadratic bezier palette with n colors."""
     return _quadratic_palette(n, *random_quadratic_params())
 
 def quadratic_palette(n, a, b, c):
+    """Returns a quadratic bezier palette with n colors defined by points 
+       a, b, and c."""
     return _quadratic_palette(n,
         [a[0],b[0],c[0]],
         [a[1],b[1],c[1]],
@@ -52,9 +55,12 @@ def _cubic_palette(n, rabcd, gabcd, babcd):
              _cubic(x/n, *babcd)] for x in range(n)]
 
 def random_cubic_palette(n):
+    """Returns a random cubic bezier palette with n colors."""
     return _cubic_palette(n, *random_cubic_params())
 
 def cubic_palette(n, a, b, c, d):
+    """Returns a cubic bezier palette with n colors defined by points 
+       a, b, c, and d."""
     return _cubic_palette(n,
         [a[0],b[0],c[0],d[0]],
         [a[1],b[1],c[1],d[1]],
