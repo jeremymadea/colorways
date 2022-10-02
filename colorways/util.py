@@ -1,5 +1,5 @@
 from random import random
-
+from math import tau, cos, sin, hypot, atan2
 """
 This module provides miscellaneous utility functions.
 
@@ -9,7 +9,8 @@ Exports:
         clamp01(x)
 
     Validation functions:
-        is_vec(arg, check_min=None, check_max=None, check_len=None, min_len=None, max_len=None, ok_types=(float,int))
+        is_vec(arg, check_min=None, check_max=None, check_len=None, 
+               min_len=None, max_len=None, ok_types=(float,int))
         is_pal01(arg)
         is_pal(arg)
         is_byte_pal(arg)
@@ -22,6 +23,7 @@ Exports:
     Palette modification utils:
         apply_to_chans(vec3, chans, fn, *args, **kwargs)
         modify_palette(pal, chans, fn, *args, **kwargs)
+        pal_extract_chans(pal):
 
     Vec3 utils:
         randvec3()
@@ -29,14 +31,24 @@ Exports:
         randvec3_partial(vec3)
         mix_vec3(base, mixin, weight)
         randmix_vec3(base, weight)
+
+    Coordinate conversions:
+        rect(r, theta, unit='rad')
+        polar(x, y, unit='rad')
+
+    Miscellaneous:
+        circ_mean(angles, unit='rad')
+        luma(rgb, use='y601'): 
 """
 
 __all__ = [
     'reflect', 'clamp01',
     'is_vec', 'is_pal01', 'is_pal', 'is_byte_pal',
     'lspace', 'circ_lspace', 'hxx_lspace', 'fspace',
-    'apply_to_chans', 'modify_palette',
+    'apply_to_chans', 'modify_palette', 'pal_extract_chans',
     'randvec3', 'randvec3mono', 'randvec3_partial', 'mix_vec3', 'randmix_vec3',
+    'rect', 'polar',
+    'circ_mean', 'luma',
     ]
 
 
@@ -170,6 +182,21 @@ def modify_palette(pal, chans, fn, *args, **kwargs):
         new.append(apply_to_chans(v, chans, fn, i, n, *args, **kwargs))
     return new 
 
+def pal_extract_chans(pal):
+    """
+    Takes a palette (list of vec3s) and returns a tuple of 3 lists, each 
+    containing the values from one of the 3 vec3 channels. 
+    E.g. pal_extract_chans([ [1,2,3], [4,5,6] ]) returns ([1,4], [2,5], [3,6])
+    """
+    chan0 = []
+    chan1 = []
+    chan2 = []
+    for v in pal:
+        chan0.append(v[0])
+        chan1.append(v[1])
+        chan2.append(v[2])
+    return (chan0, chan1, chan2)
+
 
 # Vec3 utils
 
@@ -218,4 +245,68 @@ def randmix_vec3(base, weight):
     return mix_vec3(base, randvec3(), weight)
 
 
+
+# Coordinate conversion
+
+def rect(r, theta, unit='rad'):
+    """
+    Convert from polar to cartesian coordinates.
+    The 'unit' keyword argument can take the values
+    'turn', 'deg', or 'rad' and specifies the units
+    that theta is given in.
+    """
+    if unit == 'turn': 
+        theta *= tau
+    elif unit == 'deg':
+        theta = theta/360 * tau 
+    return r*cos(theta), r*sin(theta)
+
+
+def polar(x, y, unit='rad'):
+    """
+    Convert from cartesian to polar coordinates.
+    The 'unit' keyword argument can take the values
+    'turn', 'deg', or 'rad'. 
+    """
+    r = hypot(x, y)
+    theta = atan2(y, x)
+    if unit == 'turn':
+        theta = theta/tau
+    elif unit == 'deg':
+        theta = theta * 360/tau
+    return r, theta
+
+
+# Miscellaneous
+
+def circ_mean(angles, unit='rad'):
+    # TODO: unit is ignored.
+    """
+    Returns the circular mean of the given angles in turns.
+    TODO: unit is ignored.
+    """
+    xs, ys = [], []
+    n = len(angles)
+    for a in angles: 
+        x, y = rect(1.0, a, unit='turn') 
+        xs.append(x)
+        ys.append(y)
+    return polar(sum(xs)/n, sum(ys)/n, unit='turn')
+
+
+def luma(rgb, use='y601'): 
+    """
+    Returns the luma value of the given rgb color using the specified set of 
+    coefficients (default: y601, available: y601 y240, y709, y2020)
+    """
+    # coefficients from https://en.wikipedia.org/wiki/HSL_and_HSV
+    y601  = (0.2989, 0.5870, 0.1140) # NTSC SDTV
+    y240  = (0.2120, 0.7010, 0.0870) # Adobe RGB
+    y709  = (0.2126, 0.7152, 0.0722) # HDTV
+    y2020 = (0.2627, 0.6780, 0.0593) # UHDTV, HDR
+    coeffs = y601
+    if use == 'y240': coeffs = y240
+    if use == 'y709': coeffs = y709
+    if use == 'y2020': coeffs = y2020
+    return (rgb[0]*coeffs[0] + rgb[1]*coeffs[1] + rgb[2]*coeffs[2])
 

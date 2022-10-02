@@ -1,4 +1,4 @@
-from math import tau, cos, sin, hypot, atan2
+#from math import tau, cos, sin, hypot, atan2
 from statistics import mean, pstdev, pvariance
 #from .conv import * 
 from .dist import cie76
@@ -16,6 +16,9 @@ from .conv import (
     norm2bytes,
     bytes2norm,
 )
+from .util import (
+    pal_extract_chans, rect, polar, circ_mean, luma,
+)
 
 """Provides the MasterPalette class and utility functions.
 
@@ -24,76 +27,6 @@ __all__ = [
     'new_order_by_dist_closure'
     'MasterPalette'
 ]
-
-# TODO: this probably belongs somewhere else. 
-def luma(rgb, use='y601'): 
-    # coefficients from https://en.wikipedia.org/wiki/HSL_and_HSV
-    y601  = (0.2989, 0.5870, 0.1140) # NTSC SDTV
-    y240  = (0.2120, 0.7010, 0.0870) # Adobe RGB
-    y709  = (0.2126, 0.7152, 0.0722) # HDTV
-    y2020 = (0.2627, 0.6780, 0.0593) # UHDTV, HDR
-    coeffs = y601
-    if use == 'y240': coeffs = y240
-    if use == 'y709': coeffs = y709
-    if use == 'y2020': coeffs = y2020
-    return (rgb[0]*coeffs[0] + rgb[1]*coeffs[1] + rgb[2]*coeffs[2])
-
-
-# TODO: need a util or package for this.
-def rect(r, theta, unit='rad'):
-    """
-    Convert from polar to cartesian coordinates.
-    The 'unit' keyword argument can take the values
-    'turn', 'deg', or 'rad'. 
-    """
-    if unit == 'turn': 
-        theta *= tau
-    elif unit == 'deg':
-        theta = theta/360 * tau 
-    return r*cos(theta), r*sin(theta)
-
-
-
-# TODO: need a util or package for this.
-def polar(x, y, unit='rad'):
-    """
-    Convert from cartesian to polar coordinates.
-    The 'unit' keyword argument can take the values
-    'turn', 'deg', or 'rad'. 
-    """
-    r = hypot(x, y)
-    theta = atan2(y, x)
-    if unit == 'turn':
-        theta = theta/tau
-    elif unit == 'deg':
-        theta = theta * 360/tau
-    return r, theta
-
-
-
-# TODO: need a util or package for this.
-def circ_mean(angles, unit='rad'):
-    xs, ys = [], []
-    n = len(angles)
-    for a in angles: 
-        x, y = rect(1.0, a, unit='turn') 
-        xs.append(x)
-        ys.append(y)
-    return polar(sum(xs)/n, sum(ys)/n, unit='turn')
-
-
-
-# TODO: probably belongs somewhere else.
-def pal_extract_chans(pal):
-    chan0 = []
-    chan1 = []
-    chan2 = []
-    for v in pal:
-        chan0.append(v[0])
-        chan1.append(v[1])
-        chan2.append(v[2])
-    return (chan0, chan1, chan2)
-
 
 
 def list_indexed_by(L, indices):
@@ -106,7 +39,7 @@ def new_order_by_dist_closure(hexstr, fn=cie76):
     return orderfunc
 
 
-# TODO: this probably belongs in a util package. 
+
 def bin_sizes(nitems, nbins):
     bsz = nitems / nbins
     return [round((i+1)*bsz)-round(i*bsz) for i in range(nbins)]
@@ -132,6 +65,7 @@ class MasterPalette:
         self._usebytes = usebytes
 
         self.pal = self._palette
+        self.curr = self.pal
 
         if usebytes: 
             self.pal = bytes2norm(palette)
@@ -297,7 +231,6 @@ class MasterPalette:
 
         self.register_ordering(name, order) 
 
- 
     def gen(self, fn):
         """
         Generate a variant.
@@ -335,5 +268,35 @@ class MasterPalette:
                     new.append(retval)
         return new        
         
-        
+    def __len__(self):
+        return self.n
 
+    def __getitem__(self, i):
+        if isinstance(i, slice):
+            return self.__class__(self.curr[i])
+        else:
+            return self.curr[i]
+
+    def reset(self):
+        self.curr = self.pal
+
+    def config(self, space=None, order=None):
+        if space is None: 
+           space = self._mode
+        if space == 'rgb':
+            self.curr = self.get_rgb(order) 
+        elif space == 'hsl':
+            self.curr = self.get_hsl(order) 
+        elif space == 'hsv':
+            self.curr = self.get_hsv(order) 
+        elif space == 'lab':
+            self.curr = self.get_lab(order) 
+        elif space == 'hwb':
+            self.curr = self.get_hwb(order) 
+        elif space == 'rgb8':
+            self.curr = self.get_rgb8(order) 
+        else: 
+            self.curr = list_indexed_by(self.pal, self.orderings[order])
+
+    def set_variant(self, fn):
+        self.curr - self.gen(fn)
