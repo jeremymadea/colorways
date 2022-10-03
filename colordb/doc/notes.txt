@@ -20,3 +20,19 @@ https://www.w3schools.com/colors/colors_british.asp
 https://www.w3schools.com/colors/colors_fs595.asp
 https://www.w3schools.com/colors/colors_nbs.asp
 https://www.w3schools.com/colors/colors_crayola.asp
+
+Brand Palettes
+--------------
+
+I built a large collection of brand palettes from brandpalettes.com. 
+My procedure was to use wget to mirror the site to a depth of 1:
+
+    $ wget -r -l 1 https://brandpalettes.com/ 
+
+I had to clean a few directories and files out.  Then I used the tool 
+extract_brand_palettes.pl in the tools directory to build a file containing the
+meat of a python dictionary. A few manual modifications were then required. Due
+to copyright, I'm not including the mirrored files in this repo. 
+
+  
+ 
