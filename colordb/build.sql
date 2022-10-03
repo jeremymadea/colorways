@@ -12,3 +12,4 @@ CREATE TABLE colors (
 .import csv/crayola_standard.csv colors
 .import csv/crayola_fluorescent.csv colors
 .import csv/crayola_silver_swirls.csv colors
+.import csv/w3-colors.csv colors
