@@ -27,3 +27,4 @@ CREATE TABLE colors (
 .import csv/fs595_camo.csv colors
 .import csv/fs595_highway.csv colors
 .import csv/fs595_safety.csv colors
+.import csv/ncs.csv colors

@@ -11,5 +11,5 @@ Australian AS2700 colors
 Many crayola crayon colors. 
 The xkcd color survey colors. 
 Named colors from w3schools.com
-
+NCS (natural color system) colors.
 
