@@ -21,3 +21,4 @@ CREATE TABLE colors (
 .import csv/aus.csv colors
 .import csv/bs381.csv colors
 .import csv/bs4800.csv colors
+.import csv/nbc-iscc.csv colors
