@@ -1,10 +1,13 @@
 """
 This module provides some predefined palettes.
 """
-from .conv import hex2rgb
+from ..conv import hex2rgb
 
 __all__ = [
-    'soccer_club'
+    'soccer_club',
+    'nfl',
+    'cfl',
+    'xfl',
 ]
 
 soccer_club = {
@@ -76,3 +79,61 @@ soccer_club = {
 'nottingham-forest': hex2rgb(['#E53233']),
 'tottenham-hotspur': hex2rgb(['#0A1C56','#FFFFFF']),
 }
+
+nfl = {
+'falcons': hex2rgb(['#A9162D','#000000','#FFFFFF','#A5ACAF']),
+'cardinals': hex2rgb(['#99213E','#FFB700','#000000']),
+'ravens': hex2rgb(['#241075','#BC9428','#C8032B','#FFFFFF','#000000']),
+'bills': hex2rgb(['#C8023A','#00308F']),
+'panthers': hex2rgb(['#0084CD','#000000','#BFC0BF']),
+'bears': hex2rgb(['#0A162B','#CA3700']),
+'bengals': hex2rgb(['#FE4E00','#000000']),
+'browns': hex2rgb(['#FF3A00','#FFFFFF','#311D00']),
+'cowboys': hex2rgb(['#002145','#FFFFFF']),
+'broncos': hex2rgb(['#002145','#FFFFFF','#FE4E00']),
+'lions': hex2rgb(['#0075B8','#FFFFFF','#B0B7BC']),
+'bay-packers': hex2rgb(['#1F3731','#FFFFFF','#FFB700']),
+'texans': hex2rgb(['#022030','#FFFFFF','#A9162D']),
+'colts': hex2rgb(['#002B61']),
+'jaguars': hex2rgb(['#A07A22','#D8A311','#006779']),
+'chiefs': hex2rgb(['#E60F31']),
+'chargers': hex2rgb(['#001433','#F0AE00','#007FC8']),
+'rams': hex2rgb(['#002145']),
+'dolphins': hex2rgb(['#008E98','#005679','#FFFFFF','#F78200']),
+'vikings': hex2rgb(['#FFC704','#4F2185','#FFFFFF','#EABF99']),
+'patriots': hex2rgb(['#C8032B','#002145','#FFFFFF','#B0B7BC']),
+'saints': hex2rgb(['#D3BC8D', '#000000', '#FFFFFF']),
+'giants': hex2rgb(['#092067','#A9162D']),
+'49ers': hex2rgb(['#AA0000', '#B3995D']),
+'jets': hex2rgb(['#1F3731','#FFFFFF']),
+'steelers': hex2rgb(['#000000','#A5ACAF','#00519D','#C8032B','#F0AE00']),
+'seahawks': hex2rgb(['#002145','#A5ACAF','#66C010']),
+'buccaneers': hex2rgb(['#D70100','#B1BABF','#0E0E0E','#FF7900']),
+'titans': hex2rgb(['#16233F','#4790DE','#A5ACAF','#FFFFFF','#C8032B']),
+'redskins': hex2rgb(['#5C2B2E','#FFB700']),
+}
+
+cfl = {
+'lions': hex2rgb(['#F15623', '#000000', '#FFFFFF']),
+'stampeders': hex2rgb(['#E31837', '#000000', '#FFFFFF']),
+'eskimos': hex2rgb(['#2B5134', '#FFB819', '#000000', '#FFFFFF']),
+'tiger-cats': hex2rgb(['#FFB819', '#A93439', '#000000', '#FFFFFF']),
+'alouettes': hex2rgb(['#ED1D24', '#071D49', '#FFFFFF']),
+'alouettes-2': hex2rgb(['#D70F27', '1B3863071D49', '#FFFFFF']), 
+'redblacks': hex2rgb(['#AB1E2D', '#000000', '#FFFFFF']),
+'roughriders': hex2rgb(['#006241', '#000000', '#FFFFFF']),
+'argonauts': hex2rgb(['#5F8FB1', '#0D2240', '#FFFFFF']),
+'blue-bombers': hex2rgb(['#002F87', '#FFFFFF']),
+}
+
+xfl = {
+'renegades': hex2rgb(['#5F9BCD', '#B31126', '#000000']),
+'defenders': hex2rgb(['#C80000', '#FFFFFF']),
+'roughnecks': hex2rgb(['#B31428', '#122047', '#FFFFFF']),
+'wildcats': hex2rgb(['#B50C23', '#ED770E', '#000000']),
+'guardians': hex2rgb(['#919191', '#B31428', '#000000']),
+'dragons': hex2rgb(['#122047', '#037426', '#E93B16', '#015546']),
+'battlehawks': hex2rgb(['#273270', '#919191', '#FFFFFF']),
+'vipers': hex2rgb(['#037426', '#FAA818', '#05301D', '#FFFFFF']),
+}
+
