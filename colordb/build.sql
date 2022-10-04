@@ -18,3 +18,4 @@ CREATE TABLE colors (
 .import csv/x11_1.1.csv colors
 .import csv/x11_1.2.csv colors
 .import csv/xorg.csv colors
+.improt csv/aus.csv colors
