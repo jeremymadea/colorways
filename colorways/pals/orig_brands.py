@@ -1,7 +1,7 @@
 """
 This module provides some predefined palettes.
 """
-from .conv import hex2rgb
+from ..conv import hex2rgb
 
 __all__ = [
     'brand_palettes'
