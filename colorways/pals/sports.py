@@ -1,25 +1,281 @@
 """
 This module provides some predefined palettes from sports teams and 
-organizations. These should not be assumed to be the official colors of the 
-teams or organizations although some are.
+organizations. 
+
+These should not be assumed to be official colors of the teams or organizations 
+represented, although many are. These only include RGB colors as specified by 
+RGB hexcodes. No Pantone colors, or CMYK or HSL values are included. 
 """
 
 # Sources
 #  Some from https://brandpalettes.com/
 #  Some from https://sportsfancovers.com/
+#  Some from https://teamcolorcodes.com/
 #  Some from original research.
 
 from ..conv import hex2rgb
 
 __all__ = [
-    'soccer_club',
-    'nfl',
-    'cfl',
+    'orgs',
+    'nfl', # From teamcolorcodes. More likely to be official colors.
+    'nba', # From teamcolorcodes. More likely to be official colors.
+    'mlb', # From teamcolorcodes. More likely to be official colors.
+    'nhl', # From teamcolorcodes. More likely to be official colors.
+    'nhl_past',# From teamcolorcodes. More likely to be official colors.
+    'nfl_b', # Less preferred.
+    'mlb_b', # Less preferred.
+    'cfl', 
     'xfl',
-    'mlb',
+    'soccer', 
 ]
 
-soccer_club = {
+orgs = {
+'nfl': hex2rgb(['#013369','#D50A0A']),
+}
+
+nfl = {
+'ravens': hex2rgb(['#241773','#000000','#9E7C0C','#C60C30']),
+'bengals': hex2rgb(['#FB4F14','#000000']),
+'browns': hex2rgb(['#311D00','#FF3C00']),
+'steelers': hex2rgb(['#FFB612','#101820','#003087','#C60C30','#A5ACAF']),
+'bills': hex2rgb(['#00338D','#C60C30']),
+'dolphins': hex2rgb(['#008E97','#FC4C02','#005778']),
+'patriots': hex2rgb(['#002244','#C60C30','#B0B7BC']),
+'jets': hex2rgb(['#125740','#000000','#FFFFFF']),
+'texans': hex2rgb(['#03202F','#A71930']),
+'colts': hex2rgb(['#002C5F','#A2AAAD']),
+'jaguars': hex2rgb(['#101820','#D7A22A','#9F792C','#006778']),
+'titans': hex2rgb(['#0C2340','#4B92DB','#C8102E','#8A8D8F']),
+'broncos': hex2rgb(['#FB4F14','#002244']),
+'chiefs': hex2rgb(['#E31837','#FFB81C']),
+'raiders': hex2rgb(['#000000','#A5ACAF']),
+'chargers': hex2rgb(['#0080C6','#FFC20E','#FFFFFF']),
+'bears': hex2rgb(['#0B162A','#C83803']),
+'lions': hex2rgb(['#0076B6','#B0B7BC','#000000','#FFFFFF']),
+'packers': hex2rgb(['#203731','#FFB612']),
+'vikings': hex2rgb(['#4F2683','#FFC62F']),
+'cowboys': hex2rgb(['#003594','#041E42','#869397','#7F9695','#FFFFFF']),
+'giants': hex2rgb(['#0B2265','#A71930','#A5ACAF']),
+'eagles': hex2rgb(['#004C54','#A5ACAF','#ACC0C6','#000000','#565A5C']),
+'commanders': hex2rgb(['#5A1414','#FFB612']),
+'falcons': hex2rgb(['#A71930','#000000','#A5ACAF']),
+'panthers': hex2rgb(['#0085CA','#101820','#BFC0BF']),
+'saints': hex2rgb(['#D3BC8D','#101820']),
+'buccaneers': hex2rgb(['#D50A0A','#FF7900','#FF7900','#B1BABF','#34302B']),
+'cardinals': hex2rgb(['#97233F','#000000','#FFB612']),
+'rams': hex2rgb(['#003594','#FFA300','#FF8200','#FFD100','#FFFFFF']),
+'49ers': hex2rgb(['#AA0000','#B3995D']),
+'seahawks': hex2rgb(['#002244','#69BE28','#A5ACAF']),
+}
+
+nba = {
+'hawks': hex2rgb(['#E03A3E','#C1D32F','#26282A']),
+'celtics': hex2rgb(['#007A33','#BA9653','#963821','#FFFFFF','#000000']),
+'nets': hex2rgb(['#000000','#FFFFFF']),
+'hornets': hex2rgb(['#1D1160','#00788C','#A1A1A4']),
+'bulls': hex2rgb(['#CE1141','#000000']),
+'cavaliers': hex2rgb(['#860038','#041E42','#FDBB30','#000000']),
+'mavericks': hex2rgb(['#00538C','#002B5E','#B8C4CA','#000000']),
+'nuggets': hex2rgb(['#0E2240','#FEC524','#8B2131','#1D428A']),
+'pistons': hex2rgb(['#C8102E','#1D42BA','#BEC0C2','#002D62']),
+'warriors': hex2rgb(['#1D428A','#FFC72C']),
+'rockets': hex2rgb(['#CE1141','#000000','#C4CED4']),
+'pacers': hex2rgb(['#002D62','#FDBB30','#BEC0C2']),
+'clippers': hex2rgb(['#C8102E','#1D428A','#BEC0C2','#000000']),
+'lakers': hex2rgb(['#552583','#FDB927','#000000']),
+'grizzlies': hex2rgb(['#5D76A9','#12173F','#F5B112','#707271']),
+'heat': hex2rgb(['#98002E','#F9A01B','#000000']),
+'bucks': hex2rgb(['#00471B','#EEE1C6','#0077C0','#000000']),
+'timberwolves': hex2rgb(['#0C2340','#236192','#9EA2A2','#78BE20']),
+'pelicans': hex2rgb(['#0C2340','#C8102E','#85714D']),
+'knicks': hex2rgb(['#006BB6','#F58426','#BEC0C2','#000000']),
+'thunder': hex2rgb(['#007AC1','#EF3B24','#002D62','#FDBB30']),
+'magic': hex2rgb(['#0077C0','#C4CED4','#000000']),
+'76ers': hex2rgb(['#006BB6','#ED174C','#002B5C','#C4CED4']),
+'suns': hex2rgb(['#1D1160','#E56020','#000000','#63727A','#F9AD1B']),
+'trail-blazers': hex2rgb(['#E03A3E','#000000']),
+'kings': hex2rgb(['#5A2D81','#63727A','#000000']),
+'spurs': hex2rgb(['#C4CED4','#000000']),
+'raptors': hex2rgb(['#CE1141','#000000','#A1A1A4','#B4975A']),
+'jazz': hex2rgb(['#002B5C','#00471B','#F9A01B']),
+'wizards': hex2rgb(['#002B5C','#E31837','#C4CED4']),
+}
+
+mlb = {
+'diamondbacks': hex2rgb(['#A71930','#E3D4AD','#000000','#30CED8','#FFFFFF']),
+'braves': hex2rgb(['#CE1141','#13274F','#EAAA00','#FFFFFF']),
+'orioles': hex2rgb(['#DF4601','#000000','#FFFFFF']),
+'red-sox': hex2rgb(['#BD3039','#0C2340','#FFFFFF']),
+'cubs': hex2rgb(['#0E3386','#CC3433','#FFFFFF']),
+'white-sox': hex2rgb(['#27251F','#C4CED4','#FFFFFF']),
+'reds': hex2rgb(['#C6011F','#000000','#FFFFFF']),
+'guardians': hex2rgb(['#00385D','#E50022','#FFFFFF']),
+'rockies': hex2rgb(['#333366','#C4CED4','#131413','#FFFFFF']),
+'tigers': hex2rgb(['#0C2340','#FA4616','#FFFFFF']),
+'astros': hex2rgb(['#002D62','#EB6E1F','#F4911E','#FFFFFF']),
+'royals': hex2rgb(['#004687','#BD9B60','#FFFFFF']),
+'angels': hex2rgb(['#003263','#BA0021','#862633','#C4CED4']),
+'dodgers': hex2rgb(['#005A9C','#EF3E42','#A5ACAF','#FFFFFF']),
+'marlins': hex2rgb(['#00A3E0','#EF3340','#41748D','#000000','#FFFFFF']),
+'brewers': hex2rgb(['#12284B','#FFC52F','#FFFFFF']),
+'twins': hex2rgb(['#002B5C','#D31145','#B9975B','#FFFFFF']),
+'mets': hex2rgb(['#002D72','#FF5910','#FFFFFF']),
+'yankees': hex2rgb(['#003087','#E4002C','#0C2340','#C4CED3','#FFFFFF']),
+'athletics': hex2rgb(['#003831','#EFB21E','#A2AAAD','#FFFFFF']),
+'phillies': hex2rgb(['#E81828','#002D72','#FFFFFF']),
+'pirates': hex2rgb(['#27251F','#FDB827','#FFFFFF']),
+'padres': hex2rgb(['#2F241D','#FFC425','#FFFFFF']),
+'giants': hex2rgb(['#FD5A1E','#27251F','#EFD19F','#AE8F6F','#FFFFFF']),
+'mariners': hex2rgb(['#0C2C56','#005C5C','#C4CED4','#D50032','#FFFFFF']),
+'cardinals': hex2rgb(['#C41E3A','#0C2340','#FEDB00','#FFFFFF']),
+'rays': hex2rgb(['#092C5C','#8FBCE6','#F5D130','#FFFFFF']),
+'rangers': hex2rgb(['#003278','#C0111F','#FFFFFF']),
+'blue-jays': hex2rgb(['#134A8E','#1D2D5C','#E8291C','#FFFFFF']),
+'nationals': hex2rgb(['#AB0003','#14225A','#FFFFFF']),
+}
+
+nhl = {
+'ducks': hex2rgb(['#F47A38','#B9975B','#C1C6C8','#000000']),
+'coyotes': hex2rgb(['#8C2633','#E2D6B5','#111111']),
+'bruins': hex2rgb(['#FFB81C','#000000']),
+'sabres': hex2rgb(['#003087','#FFB81C','#FFFFFF']),
+'flames': hex2rgb(['#D2001C','#FAAF19','#FFFFFF']),
+'hurricanes': hex2rgb(['#CE1126','#FFFFFF','#A4A9AD','#000000']),
+'blackhawks': hex2rgb(['#CF0A2C','#FF671B','#00833E','#FFD100','#D18A00','#001970','#000000','#FFFFFF']),
+'avalanche': hex2rgb(['#6F263D','#236192','#A2AAAD','#000000']),
+'blue-jackets': hex2rgb(['#002654','#CE1126','#A4A9AD']),
+'stars': hex2rgb(['#006847','#8F8F8C','#111111']),
+'red-wings': hex2rgb(['#CE1126','#FFFFFF']),
+'oilers': hex2rgb(['#041E42','#FF4C00']),
+'panthers': hex2rgb(['#041E42','#C8102E','#B9975B']),
+'kings': hex2rgb(['#111111','#A2AAAD','#FFFFFF']),
+'wild': hex2rgb(['#A6192E','#154734','#EAAA00','#DDCBA4']),
+'canadiens': hex2rgb(['#AF1E2D','#192168']),
+'predators': hex2rgb(['#FFB81C','#041E42','#FFFFFF']),
+'devils': hex2rgb(['#CE1126','#000000','#FFFFFF']),
+'islanders': hex2rgb(['#00539B','#F47D30']),
+'rangers': hex2rgb(['#0038A8','#CE1126','#FFFFFF']),
+'senators': hex2rgb(['#000000','#DA1A32','#B79257','#FFFFFF']),
+'flyers': hex2rgb(['#F74902','#000000','#FFFFFF']),
+'penguins': hex2rgb(['#000000','#CFC493','#FCB514','#FFFFFF']),
+'blues': hex2rgb(['#002F87','#FCB514','#041E42','#FFFFFF']),
+'sharks': hex2rgb(['#006D75','#EA7200','#000000','#FFFFFF']),
+'kraken': hex2rgb(['#001628','#99D9D9','#355464','#68A2B9','#E9072B']),
+'lightning': hex2rgb(['#002868','#FFFFFF']),
+'maple-leafs': hex2rgb(['#00205B','#FFFFFF']),
+'canucks': hex2rgb(['#00205B','#00843D','#041C2C','#99999A','#FFFFFF']),
+'golden-knights': hex2rgb(['#B4975A','#333F42','#C8102E','#000000','#FFFFFF']),
+'capitals': hex2rgb(['#041E42','#C8102E','#FFFFFF']),
+'jets': hex2rgb(['#041E42','#004C97','#AC162C','#7B303E','#55565A','#8E9090','#FFFFFF']),
+}
+
+nhl_past = {
+'atlanta-thrashers': hex2rgb(['#041E42','#5C88DA','#862633','#B86125','#FFA300']),
+'hartford-whalers-92-97': hex2rgb(['#00205B','#046A38','#A2AAAD']),
+'hartford-whalers-79-92': hex2rgb(['#0E7B3E','#2A3489']),
+'hartford-whalers-72-79': hex2rgb(['#006D2C','#2D2926']),
+'minnesota-north-stars-91-93': hex2rgb(['#C69214','#007A33','#000000']),
+'minnesota-north-stars-85-91': hex2rgb(['#009639','#FFD100','#000000']),
+'minnesota-north-stars-67-85': hex2rgb(['#009639','#FFD100']),
+'quebec-nordiques': hex2rgb(['#DA291C','#005EB8']),
+}
+
+
+nfl_b = {
+'49ers': hex2rgb(['#AA0000', '#B3995D']),
+'bills': hex2rgb(['#C8023A','#00308F']),
+'bears': hex2rgb(['#0A162B','#CA3700']),
+'bengals': hex2rgb(['#FE4E00','#000000']),
+'broncos': hex2rgb(['#002145','#FFFFFF','#FE4E00']),
+'browns': hex2rgb(['#FF3A00','#FFFFFF','#311D00']),
+'buccaneers': hex2rgb(['#D70100','#B1BABF','#0E0E0E','#FF7900']),
+'cardinals': hex2rgb(['#99213E','#FFB700','#000000']),
+'chargers': hex2rgb(['#001433','#F0AE00','#007FC8']),
+'chiefs': hex2rgb(['#E60F31']),
+'colts': hex2rgb(['#002B61']),
+'cowboys': hex2rgb(['#002145','#FFFFFF']),
+'dolphins': hex2rgb(['#008E98','#005679','#FFFFFF','#F78200']),
+'eagles': hex2rgb(['#004C55','#A5ACAF','#FFFFFF','#000000']),
+'falcons': hex2rgb(['#A9162D','#000000','#FFFFFF','#A5ACAF']),
+'giants': hex2rgb(['#092067','#A9162D']),
+'jaguars': hex2rgb(['#A07A22','#D8A311','#006779']),
+'jets': hex2rgb(['#1F3731','#FFFFFF']),
+'lions': hex2rgb(['#0075B8','#FFFFFF','#B0B7BC']),
+'packers': hex2rgb(['#1F3731','#FFFFFF','#FFB700']),
+'patriots': hex2rgb(['#C8032B','#002145','#FFFFFF','#B0B7BC']),
+'panthers': hex2rgb(['#0084CD','#000000','#BFC0BF']),
+'raiders': hex2rgb(['#A5ACAF','#000000']),
+'rams': hex2rgb(['#002145']),
+'ravens': hex2rgb(['#241075','#BC9428','#C8032B','#FFFFFF','#000000']),
+'redskins': hex2rgb(['#5C2B2E','#FFB700']),
+'saints': hex2rgb(['#D3BC8D', '#000000', '#FFFFFF']),
+'seahawks': hex2rgb(['#002145','#A5ACAF','#66C010']),
+'steelers': hex2rgb(['#000000','#A5ACAF','#00519D','#C8032B','#F0AE00']),
+'texans': hex2rgb(['#022030','#FFFFFF','#A9162D']),
+'titans': hex2rgb(['#16233F','#4790DE','#A5ACAF','#FFFFFF','#C8032B']),
+'vikings': hex2rgb(['#FFC704','#4F2185','#FFFFFF','#EABF99']),
+}
+
+mlb_b = {
+'angels': hex2rgb(['#003263','#FFFFFF','#C4CDD3','#CD1141','#8F0028']),
+'astros': hex2rgb(['#002D62','#EB6E1F','#F4911E','#E7E9EA']),
+'athletics': hex2rgb(['#003831','#EFB21E','#FFFFFF']),
+'blue-jays': hex2rgb(['#134A8E','#1D2D5C','#E8291C','#FFFFFF']),
+'braves': hex2rgb(['#13274F','#CE1141','#E7A801']),
+'brewers': hex2rgb(['#12284B','#FFC52F','#003EA0']),
+'brewers-old': hex2rgb(['#0A2351','#B6922E','#0046AE']),
+'cardinals': hex2rgb(['#B72126','#FEE60E','#14264B']),
+'cubs': hex2rgb(['#0E3386','#FFFFFF','#CC3433']),
+'diamondbacks': hex2rgb(['#A71930','#E3D4AD','#3FC2CC','#000000','#FFFFFF']),
+'dodgers': hex2rgb(['#EF3E42','#005A9C']),
+'giants': hex2rgb(['#FD5A1E','#8B6F4E','#E6D8AF','#000000']),
+'indians': hex2rgb(['#E31937','#FFFFFF']),
+'mariners': hex2rgb(['#0C2C56','#C4CED4','#005C5C','#002878','#FFC528','#FFF6DD']),
+'marlins': hex2rgb(['#FF6600','#FFD100','#FFFFFF','#A7A9AC','#0078C8']),
+'mets': hex2rgb(['#002D72','#FF5910','#FFFFFF']),
+'nationals': hex2rgb(['#AB0003','#212759','#FFFFFF']),
+'orioles': hex2rgb(['#DF4400','#FFFFFF','#000000','#B5B6B8']),
+'padres': hex2rgb(['#2F241D','#FFC425','#FFFFFF']),
+'phillies': hex2rgb(['#E81828','#284898','#FFFFFF']),
+'pirates': hex2rgb(['#FDB827','#000000','#FFFFFF']),
+'rangers': hex2rgb(['#003278', '#C0111F','#FFFFFF']),
+'rays': hex2rgb(['#092C5C','#8FBCE6','#F5D130','#FFFFFF']),
+'red-sox': hex2rgb(['#C62033','#FFFFFF','#052755']),
+'reds': hex2rgb(['#C6011F','#FFFFFF','#000000']),
+'rockies': hex2rgb(['#33006F','#C4CED4','#000000']),
+'royals': hex2rgb(['#174885','#C0995A','#7BB2DD','#FFFFFF']),
+'tigers': hex2rgb(['#0C2C56']),
+'twins': hex2rgb(['#002B5C','#D31145','#CFAC7A','#FFFFFF']),
+'white-sox': hex2rgb(['#231F20','#FFFFFF','#C4CDD3']),
+'yankees': hex2rgb(['#132448','#FFFFFF']),
+'yankees-logo': hex2rgb(['#003087','#E4002C','#FFFFFF']),
+}
+
+cfl = {
+'alouettes': hex2rgb(['#ED1D24', '#071D49', '#FFFFFF']),
+'alouettes-2': hex2rgb(['#D70F27', '1B3863071D49', '#FFFFFF']), 
+'argonauts': hex2rgb(['#5F8FB1', '#0D2240', '#FFFFFF']),
+'blue-bombers': hex2rgb(['#002F87', '#FFFFFF']),
+'eskimos': hex2rgb(['#2B5134', '#FFB819', '#000000', '#FFFFFF']),
+'lions': hex2rgb(['#F15623', '#000000', '#FFFFFF']),
+'redblacks': hex2rgb(['#AB1E2D', '#000000', '#FFFFFF']),
+'roughriders': hex2rgb(['#006241', '#000000', '#FFFFFF']),
+'stampeders': hex2rgb(['#E31837', '#000000', '#FFFFFF']),
+'tiger-cats': hex2rgb(['#FFB819', '#A93439', '#000000', '#FFFFFF']),
+}
+
+xfl = {
+'battlehawks': hex2rgb(['#273270', '#919191', '#FFFFFF']),
+'defenders': hex2rgb(['#C80000', '#FFFFFF']),
+'dragons': hex2rgb(['#122047', '#037426', '#E93B16', '#015546']),
+'guardians': hex2rgb(['#919191', '#B31428', '#000000']),
+'renegades': hex2rgb(['#5F9BCD', '#B31126', '#000000']),
+'roughnecks': hex2rgb(['#B31428', '#122047', '#FFFFFF']),
+'vipers': hex2rgb(['#037426', '#FAA818', '#05301D', '#FFFFFF']),
+'wildcats': hex2rgb(['#B50C23', '#ED770E', '#000000']),
+}
+
+soccer = {
 'aek-larnaca': hex2rgb(['#017947','#F6EF1E']),
 'anorthosis-famagusta': hex2rgb(['#0055A5','#EF4035','#FFFFFF','#E7BC30']),
 'apoel': hex2rgb(['#A29061','#004690','#009AE1','#FFFFFF','#FED547','#E5A321']),
@@ -89,98 +345,4 @@ soccer_club = {
 'tottenham-hotspur': hex2rgb(['#0A1C56','#FFFFFF']),
 }
 
-nfl = {
-'nfl': hex2rgb(['#013369','#D50A0A']),
-'49ers': hex2rgb(['#AA0000', '#B3995D']),
-'bills': hex2rgb(['#C8023A','#00308F']),
-'bears': hex2rgb(['#0A162B','#CA3700']),
-'bengals': hex2rgb(['#FE4E00','#000000']),
-'broncos': hex2rgb(['#002145','#FFFFFF','#FE4E00']),
-'browns': hex2rgb(['#FF3A00','#FFFFFF','#311D00']),
-'buccaneers': hex2rgb(['#D70100','#B1BABF','#0E0E0E','#FF7900']),
-'cardinals': hex2rgb(['#99213E','#FFB700','#000000']),
-'chargers': hex2rgb(['#001433','#F0AE00','#007FC8']),
-'chiefs': hex2rgb(['#E60F31']),
-'colts': hex2rgb(['#002B61']),
-'cowboys': hex2rgb(['#002145','#FFFFFF']),
-'dolphins': hex2rgb(['#008E98','#005679','#FFFFFF','#F78200']),
-'eagles': hex2rgb(['#004C55','#A5ACAF','#FFFFFF','#000000']),
-'falcons': hex2rgb(['#A9162D','#000000','#FFFFFF','#A5ACAF']),
-'giants': hex2rgb(['#092067','#A9162D']),
-'jaguars': hex2rgb(['#A07A22','#D8A311','#006779']),
-'jets': hex2rgb(['#1F3731','#FFFFFF']),
-'lions': hex2rgb(['#0075B8','#FFFFFF','#B0B7BC']),
-'packers': hex2rgb(['#1F3731','#FFFFFF','#FFB700']),
-'patriots': hex2rgb(['#C8032B','#002145','#FFFFFF','#B0B7BC']),
-'panthers': hex2rgb(['#0084CD','#000000','#BFC0BF']),
-'raiders': hex2rgb(['#A5ACAF','#000000']),
-'rams': hex2rgb(['#002145']),
-'ravens': hex2rgb(['#241075','#BC9428','#C8032B','#FFFFFF','#000000']),
-'redskins': hex2rgb(['#5C2B2E','#FFB700']),
-'saints': hex2rgb(['#D3BC8D', '#000000', '#FFFFFF']),
-'seahawks': hex2rgb(['#002145','#A5ACAF','#66C010']),
-'steelers': hex2rgb(['#000000','#A5ACAF','#00519D','#C8032B','#F0AE00']),
-'texans': hex2rgb(['#022030','#FFFFFF','#A9162D']),
-'titans': hex2rgb(['#16233F','#4790DE','#A5ACAF','#FFFFFF','#C8032B']),
-'vikings': hex2rgb(['#FFC704','#4F2185','#FFFFFF','#EABF99']),
-}
-
-cfl = {
-'alouettes': hex2rgb(['#ED1D24', '#071D49', '#FFFFFF']),
-'alouettes-2': hex2rgb(['#D70F27', '1B3863071D49', '#FFFFFF']), 
-'argonauts': hex2rgb(['#5F8FB1', '#0D2240', '#FFFFFF']),
-'blue-bombers': hex2rgb(['#002F87', '#FFFFFF']),
-'eskimos': hex2rgb(['#2B5134', '#FFB819', '#000000', '#FFFFFF']),
-'lions': hex2rgb(['#F15623', '#000000', '#FFFFFF']),
-'redblacks': hex2rgb(['#AB1E2D', '#000000', '#FFFFFF']),
-'roughriders': hex2rgb(['#006241', '#000000', '#FFFFFF']),
-'stampeders': hex2rgb(['#E31837', '#000000', '#FFFFFF']),
-'tiger-cats': hex2rgb(['#FFB819', '#A93439', '#000000', '#FFFFFF']),
-}
-
-xfl = {
-'battlehawks': hex2rgb(['#273270', '#919191', '#FFFFFF']),
-'defenders': hex2rgb(['#C80000', '#FFFFFF']),
-'dragons': hex2rgb(['#122047', '#037426', '#E93B16', '#015546']),
-'guardians': hex2rgb(['#919191', '#B31428', '#000000']),
-'renegades': hex2rgb(['#5F9BCD', '#B31126', '#000000']),
-'roughnecks': hex2rgb(['#B31428', '#122047', '#FFFFFF']),
-'vipers': hex2rgb(['#037426', '#FAA818', '#05301D', '#FFFFFF']),
-'wildcats': hex2rgb(['#B50C23', '#ED770E', '#000000']),
-}
-
-mlb = {
-'angels': hex2rgb(['#003263','#FFFFFF','#C4CDD3','#CD1141','#8F0028']),
-'astros': hex2rgb(['#002D62','#EB6E1F','#F4911E','#E7E9EA']),
-'athletics': hex2rgb(['#003831','#EFB21E','#FFFFFF']),
-'blue-jays': hex2rgb(['#134A8E','#1D2D5C','#E8291C','#FFFFFF']),
-'braves': hex2rgb(['#13274F','#CE1141','#E7A801']),
-'brewers': hex2rgb(['#12284B','#FFC52F','#003EA0']),
-'brewers-old': hex2rgb(['#0A2351','#B6922E','#0046AE']),
-'cardinals': hex2rgb(['#B72126','#FEE60E','#14264B']),
-'cubs': hex2rgb(['#0E3386','#FFFFFF','#CC3433']),
-'diamondbacks': hex2rgb(['#A71930','#E3D4AD','#3FC2CC','#000000','#FFFFFF']),
-'dodgers': hex2rgb(['#EF3E42','#005A9C']),
-'giants': hex2rgb(['#FD5A1E','#8B6F4E','#E6D8AF','#000000']),
-'indians': hex2rgb(['#E31937','#FFFFFF']),
-'mariners': hex2rgb(['#0C2C56','#C4CED4','#005C5C','#002878','#FFC528','#FFF6DD']),
-'marlins': hex2rgb(['#FF6600','#FFD100','#FFFFFF','#A7A9AC','#0078C8']),
-'mets': hex2rgb(['#002D72','#FF5910','#FFFFFF']),
-'nationals': hex2rgb(['#AB0003','#212759','#FFFFFF']),
-'orioles': hex2rgb(['#DF4400','#FFFFFF','#000000','#B5B6B8']),
-'padres': hex2rgb(['#2F241D','#FFC425','#FFFFFF']),
-'phillies': hex2rgb(['#E81828','#284898','#FFFFFF']),
-'pirates': hex2rgb(['#FDB827','#000000','#FFFFFF']),
-'rangers': hex2rgb(['#003278', '#C0111F','#FFFFFF']),
-'rays': hex2rgb(['#092C5C','#8FBCE6','#F5D130','#FFFFFF']),
-'red-sox': hex2rgb(['#C62033','#FFFFFF','#052755']),
-'reds': hex2rgb(['#C6011F','#FFFFFF','#000000']),
-'rockies': hex2rgb(['#33006F','#C4CED4','#000000']),
-'royals': hex2rgb(['#174885','#C0995A','#7BB2DD','#FFFFFF']),
-'tigers': hex2rgb(['#0C2C56']),
-'twins': hex2rgb(['#002B5C','#D31145','#CFAC7A','#FFFFFF']),
-'white-sox': hex2rgb(['#231F20','#FFFFFF','#C4CDD3']),
-'yankees': hex2rgb(['#132448','#FFFFFF']),
-'yankees-logo': hex2rgb(['#003087','#E4002C','#FFFFFF']),
-}
 #'': hex2rgb([]),
