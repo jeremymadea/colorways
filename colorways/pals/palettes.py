@@ -102,8 +102,8 @@ beverage = {
 'kool-aid': hex2rgb(['#0056A2', '#00AEEF']),
 'sprite': hex2rgb(['#008B47', '#F8CD24', '#6BB64A']),
 'gatorade': hex2rgb(['#F8A350', '#EE3D42', '#231F20']),
-'coke-xx': hex2rgb(['#ED1C16']),
-'pepsi-xx': hex2rgb(['#E32934', '#004883']),
+'coke_xx': hex2rgb(['#ED1C16']),
+'pepsi_xx': hex2rgb(['#E32934', '#004883']),
 }
 
 # Retail brands
@@ -119,11 +119,11 @@ automobile = {
 # Restaurant brands
 restaurant = {
 'mcdonalds': hex2rgb(['#FFC72C', '#DA291C', '#27251F']),
-'burger_king': hex2rgb(['#DA291C', '#0033A0', '#F2A900']),
-'taco_bell': hex2rgb(['#702082', '#A77BCA', '#000000']),
+'burger-king': hex2rgb(['#DA291C', '#0033A0', '#F2A900']),
+'taco-bell': hex2rgb(['#702082', '#A77BCA', '#000000']),
 'subway': hex2rgb(['#008C15', '#FFC600']),
 'starbucks': hex2rgb(['#00704A', '#27251F']),
-'dunkin_donuts': hex2rgb(['#FF671F', '#DA1884', '#653819']),
+'dunkin-donuts': hex2rgb(['#FF671F', '#DA1884', '#653819']),
 }
 
 # Courier brands
@@ -141,39 +141,39 @@ media = {
 'netflix': hex2rgb(['#221F1F', '#E50914', '#F5F5F1']),
 'spotify': hex2rgb(['#1DB954', '#191414']),
 'disneyxd': hex2rgb(['#08EE59']),
-'disneyxd_old': hex2rgb(['#243E65','#B5DB17']),
-'disney_fireworks': hex2rgb(
+'disneyxd-old': hex2rgb(['#243E65','#B5DB17']),
+'disney-fireworks': hex2rgb(
     ['#1738B7', '#3340DB', '#504DF4', '#DE5BF8', '#EFE8FF', '#A76BFE']),
 }
 
 # Whiskey brands
 whiskey = {
-'johnny_walker': hex2rgb(['#000000', '#0C2340', '#866D4B']),
-'jack_daniels': hex2rgb(['#000000', '#8C6E4B', '#38573D']),
-'jim_beam': hex2rgb(['#000000', '#B4944A']),
+'johnny-walker': hex2rgb(['#000000', '#0C2340', '#866D4B']),
+'jack-daniels': hex2rgb(['#000000', '#8C6E4B', '#38573D']),
+'jim-beam': hex2rgb(['#000000', '#B4944A']),
 }
 
 # Beer brands
 beer = {
-'bud_light': hex2rgb(['#00A1E1', '#00A1E1']),
+'bud-light': hex2rgb(['#00A1E1', '#00A1E1']),
 'budweiser': hex2rgb(['#C8102E']),
 'busch': hex2rgb(['#373435', '#BB9D42', '#313A5F', '#22C4F3']),
-'busch_light': hex2rgb(['#314973', '#00BCF1', '#C2C3C5']),
+'busch-light': hex2rgb(['#314973', '#00BCF1', '#C2C3C5']),
 'coors': hex2rgb(['#000D48', '#FFFFFF', '#95969A']),
-'coors_light': hex2rgb(['#D31245', '#D1D3D4', '#717073']),
+'coors-light': hex2rgb(['#D31245', '#D1D3D4', '#717073']),
 'heineken': hex2rgb(['#007F2D', '#E30613', '#BDBCBC']),
-'keystone_light': hex2rgb(['#00255B', '#47C3EB']),
-'michelob_ultra': hex2rgb(['#0058A4', '#DC1D38', '#B21F3E']),
-'miller_high_life': hex2rgb(['#86754D', '#AA483D']),
-'miller_lite': hex2rgb(['#000F3D', '#A07713', '#AF282D']),
-'natural_light': hex2rgb(
+'keystone-light': hex2rgb(['#00255B', '#47C3EB']),
+'michelob-ultra': hex2rgb(['#0058A4', '#DC1D38', '#B21F3E']),
+'miller-high-life': hex2rgb(['#86754D', '#AA483D']),
+'miller-lite': hex2rgb(['#000F3D', '#A07713', '#AF282D']),
+'natural-light': hex2rgb(
     ['#00AEEF', '#0067B1', '#004B8D', '#EE3124', 
      '#B30838', '#A7A9AC', '#7E8083']),
-'pabst_blue_ribbon': hex2rgb(['#222D65', '#CE202E', '#D8D9DA']),
-'samuel_adams': hex2rgb(['#002856', '#E2231A']),
+'pabst-blue-ribbon': hex2rgb(['#222D65', '#CE202E', '#D8D9DA']),
+'samuel-adams': hex2rgb(['#002856', '#E2231A']),
 }
 
 # Miscellaneous brands
 misc = {
-'john_deere': hex2rgb(['#367C2B', '#FFDE00', '#000000']),
+'john-deere': hex2rgb(['#367C2B', '#FFDE00', '#000000']),
 }
