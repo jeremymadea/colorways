@@ -23,7 +23,7 @@ __all__ = [
 ]
 
 colorwheel = {
-    'hxx_degrees': hue_gradient_palette([[0, 1, 1], [1, 1, 1]], 360),
+    'hxx_degrees': hue_gradient_palette([[0, 1, .5], [1, 1, .5]], 360),
 }
 
 ## Brand palettes
