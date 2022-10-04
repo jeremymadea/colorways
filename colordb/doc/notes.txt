@@ -13,6 +13,8 @@ https://en.wikipedia.org/wiki/List_of_U.S._state_colors
 https://blog.xkcd.com/2010/05/03/color-survey-results/
 https://www.w3schools.com/colors/colors_xkcd.asp
 https://www.w3schools.com/colors/colors_resene.asp
+https://teamcolorcodes.com/
+https://www.resene.co.nz/
 https://www.resene.co.nz/swatches/
 https://www.w3schools.com/colors/colors_ncs.asp
 https://www.w3schools.com/colors/colors_australia.asp
@@ -20,7 +22,6 @@ https://www.w3schools.com/colors/colors_british.asp
 https://www.w3schools.com/colors/colors_fs595.asp
 https://www.w3schools.com/colors/colors_nbs.asp
 https://www.w3schools.com/colors/colors_crayola.asp
-https://teamcolorcodes.com/
 
 Brand Palettes
 --------------
