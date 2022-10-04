@@ -22,3 +22,8 @@ CREATE TABLE colors (
 .import csv/bs381.csv colors
 .import csv/bs4800.csv colors
 .import csv/nbc-iscc.csv colors
+.import csv/fs595c.csv colors
+.import csv/fs595_ana.csv colors
+.import csv/fs595_camo.csv colors
+.import csv/fs595_highway.csv colors
+.import csv/fs595_safety.csv colors
