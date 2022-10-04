@@ -2,29 +2,28 @@
 This module provides some predefined palettes.
 """
 
-
 from ..gen import hue_gradient_palette
 from ..conv import hex2rgb
 
 __all__ = [ 
-    colorwheel_degrees_pal,
-    tech,
-    service,
-    messaging,
-    social_media,
-    beverage,
-    retail,
-    automobile,
-    restaurant,
-    courier,
-    media,
-    whiskey,
-    beer,
-    misc, 
+    'colorwheel',
+    'tech',
+    'service',
+    'messaging',
+    'social_media',
+    'beverage',
+    'retail',
+    'automobile',
+    'restaurant',
+    'courier',
+    'media',
+    'whiskey',
+    'beer',
+    'misc', 
 ]
 
 colorwheel = {
-    'hxx_degrees': hue_gradient_palette([[0, 1, 1], [1, 1, 1]], 360)
+    'hxx_degrees': hue_gradient_palette([[0, 1, 1], [1, 1, 1]], 360),
 }
 
 ## Brand palettes
@@ -88,8 +87,8 @@ social_media = {
 'twitter':hex2rgb(
     ['#1DA1F2', '#14171A', '#657786', '#AAB8C2', '#E1E8ED', 
      '#F5F8FA', '#FFFFFF']),
-'instagram_xx':hex2rgb('#3F729B']),
-    ['#3B5998', '#8B9DC3','#DFE3EE', '#F7F7F7', '#FFFFFF']),
+'instagram_xx':hex2rgb(
+    ['#3F729B', '#3B5998', '#8B9DC3','#DFE3EE', '#F7F7F7', '#FFFFFF']),
 'twitter_xx':hex2rgb(
     ['#55ACEE', '#292F33','#66757F','#CCD6DD','#E1E8ED','#FFFFFF']),
 }
