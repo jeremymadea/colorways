@@ -5,5 +5,6 @@ cruft
 research
 dist
 Untitled*.ipynb
+scratch*.ipynb
 .*.swp
 archive
