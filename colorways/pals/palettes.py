@@ -3,8 +3,8 @@ This module provides some predefined palettes.
 """
 
 
-from .gen import hue_gradient_palette
-from .conv import hex2rgb
+from ..gen import hue_gradient_palette
+from ..conv import hex2rgb
 
 __all__ = [ 
     
