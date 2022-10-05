@@ -7,6 +7,7 @@ CREATE TABLE colors (
     notes TEXT
 );
 
+-- Load the data. 
 .mode csv 
 .separator |
 .import csv/crayola_standard.csv colors
@@ -28,3 +29,7 @@ CREATE TABLE colors (
 .import csv/fs595_highway.csv colors
 .import csv/fs595_safety.csv colors
 .import csv/ncs.csv colors
+.import csv/resene.csv colors
+
+-- uppercase the hex column to ensure consistency. 
+UPDATE colors SET hex = UPPER(hex);
