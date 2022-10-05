@@ -31,6 +31,7 @@ CREATE TABLE colors (
 .import csv/ncs.csv colors
 .import csv/resene.csv colors
 .import csv/encycolorpedia.csv colors
+.import csv/sherwin_williams.csv colors
 
 -- uppercase the hex column to ensure consistency. 
 UPDATE colors SET hex = UPPER(hex);

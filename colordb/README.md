@@ -14,3 +14,4 @@ Named colors from w3schools.com
 NCS (natural color system) colors.
 Resene colors
 encycolorpedia colors (some names cleaned.)
+sherwin williams colors
