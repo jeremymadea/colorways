@@ -13,3 +13,4 @@ The xkcd color survey colors.
 Named colors from w3schools.com
 NCS (natural color system) colors.
 Resene colors
+encycolorpedia colors (some names cleaned.)
