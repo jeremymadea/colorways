@@ -56,3 +56,6 @@ UPDATE colors SET hex = UPPER(hex);
 
 -- lowercase css3 names (TODO just fix the csv.) 
 UPDATE colors SET name = LOWER(name) WHERE topset='CSS3';
+
+-- uppercase the RAL topset name. (TODO fix the csv.)
+UPDATE colors SET topset = UPPER(topset) WHERE topset='ral';
