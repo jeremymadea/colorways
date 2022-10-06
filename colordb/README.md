@@ -34,7 +34,7 @@ Currently the database includes:
     - topset="CSS3": 148 colors 
 - RAL colors
     - topset="ral": 2531 colors
-- Encycolorpedia
+- Encycolorpedia colors
     - topset='encycolorpedia': 1690 colors
 
 total entries: 16570
