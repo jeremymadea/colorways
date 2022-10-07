@@ -9,7 +9,7 @@ Currently the database includes:
     - topset='FS595C': 616 colors
     - topset='FS595': 73 colors
 - NBC-ISCC colors
-    - topset='NBC-ISCC': 268 colors
+    - topset='NBC-ISCC': 267 colors
 - x11 rgb.txt colors (various versions)
     - topset='x11': 1728 colors
     - topset='xorg': 782 colors
@@ -37,9 +37,9 @@ Currently the database includes:
 - Encycolorpedia colors
     - topset='encycolorpedia': 1690 colors
 
-total entries: 16570
+total entries: 16569
 
-unique hex codes: 13385
+unique hex codes: 13383
 
 
 

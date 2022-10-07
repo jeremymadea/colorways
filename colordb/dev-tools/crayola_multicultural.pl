@@ -3,6 +3,9 @@
 # HTML code after __DATA__ token is taken from 
 # https://en.wikipedia.org/wiki/List_of_Crayola_crayon_colors
 
+#### NOTE! I manually added #FA9D5A as the hex code for Tan in the csv file.
+
+
 my $text = do { undef $/; <DATA> };
 
 for my $tr ($text =~ m!<tr[^>]*>(.*?)</tr>!isg) {
