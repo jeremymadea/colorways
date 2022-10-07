@@ -2,10 +2,17 @@ CREATE TABLE colors (
     topset TEXT NOT NULL,
     subset TEXT, 
     name TEXT,
-    hex TEXT,
+    hex TEXT NOT NULL,
     valid INTEGER,
     notes TEXT
 );
+
+CREATE TABLE components (
+    hex TEXT UNIQUE NOT NULL,
+    r   INTEGER,
+    g   INTEGER, 
+    b   INTEGER
+);    
 
 -- Load the data. 
 .mode csv 
@@ -59,3 +66,46 @@ UPDATE colors SET name = LOWER(name) WHERE topset='CSS3';
 
 -- uppercase the RAL topset name. (TODO fix the csv.)
 UPDATE colors SET topset = UPPER(topset) WHERE topset='ral';
+
+-- add hex values to components table. 
+INSERT INTO components (hex) SELECT DISTINCT hex FROM colors;
+
+
+-- outright unforgiveable hackery to get rgb values from hexcodes.
+CREATE TABLE hexconv ( 
+    i INTEGER, 
+    h TEXT 
+);
+
+  -- This bit is especially bad, I think. Works tho.
+INSERT INTO hexconv (i, h) 
+     SELECT rowid-1, printf('%2X',rowid-1) FROM colors LIMIT 256;
+
+UPDATE components 
+   SET r=tmp.i 
+  FROM (
+    SELECT hex,i 
+      FROM components 
+      JOIN hexconv ON h = substr(hex,2,2)
+       ) AS tmp 
+ WHERE tmp.hex = components.hex;
+
+UPDATE components 
+   SET g=tmp.i 
+  FROM (
+    SELECT hex,i 
+      FROM components 
+      JOIN hexconv ON h = substr(hex,4,2)
+       ) AS tmp 
+ WHERE tmp.hex = components.hex;
+
+UPDATE components 
+   SET b=tmp.i 
+  FROM (
+    SELECT hex,i 
+      FROM components 
+      JOIN hexconv ON h = substr(hex,6,2)
+       ) AS tmp 
+ WHERE tmp.hex = components.hex;
+
+-- end of hackery
