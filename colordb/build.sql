@@ -56,6 +56,9 @@ CREATE TABLE components (
 .import csv/encycolorpedia.csv colors
 .import csv/sherwin_williams.csv colors
 .import csv/css3_colors.csv colors
+.import csv/heraldry.csv colors
+.import csv/colorpizza.csv colors
+.import csv/ridgway.csv colors
 
 
 -- uppercase the hex column to ensure consistency. 

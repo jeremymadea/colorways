@@ -36,12 +36,18 @@ Currently the database includes:
     - topset="ral": 2531 colors
 - Encycolorpedia colors
     - topset='encycolorpedia': 1690 colors
+- Heraldry colors
+    - topset='heraldry': 10 colors
+- Colors from "Color Standards and Color Nomenclature" by Robert Ridgway 
+    - topset='Ridgway': 1117
+- ColorPizza named colors:
+    - topset='colorpizza': 29806
 
-total entries: 16569
+total entries: 47502
+unique hex codes: 39620
 
-unique hex codes: 13383
 
-
+The colors from Ridgway's books were retrieved from ColorPizza.
 
 The CSS3 entries include rebeccapurple. It's a special color. Please read its
 story here: https://medium.com/@valgaze/the-hidden-purple-memorial-in-your-web-browser-7d84813bb416
