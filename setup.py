@@ -1,4 +1,5 @@
 from setuptools import setup
+from setuptools import find_packages
 
 # read the contents of your README file
 from pathlib import Path
@@ -15,5 +16,5 @@ setup(name='colorways',
     author='Jeremy Madea',
     author_email='jdmadea@gmail.com',
     license='MIT',
-    packages=['colorways'],
+    packages=find_packages(),
     zip_safe=False)

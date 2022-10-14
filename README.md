@@ -25,6 +25,11 @@ WCAG color contrast), interpolating between colors, blending colors,
 randomizing colors, and sorting colors. Finally, it provides a broad
 selection of parameterized color palette generators.
 
+Installation
+============
+
+    pip install colorways
+
 Conventions
 ===========
 
