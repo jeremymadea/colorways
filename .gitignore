@@ -8,3 +8,6 @@ Untitled*.ipynb
 scratch*.ipynb
 .*.swp
 archive
+*.pyc
+/dist/
+/*.egg-info
