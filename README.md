@@ -63,19 +63,19 @@ non-vec3 formats.
 
 Modules
 -------
-    bezier:        Functions for bezier curve palettes.
-    blend:         Functions for blending colors.
-    conv:          Conversions between color spaces and representations.
-    css:           CSS named colors.
-    dist:          Color distance measures. 
-    gen:           Palette and gradient generation functions.
-    masterpalette: Provides the MasterPalette class and utilities.
-    pals.*:        Various predefined color palettes.
-    sort:          Functions for sorting palettes by various criteria. 
-    spectra.*:     Various approximations of the visual spectrum. 
-    theory:        Functions for traditional color theory palettes.
-    util:          Utility functions.
-    wcag:          Web Content Accessibility Guidelines color contrast.
+* bezier:        Functions for bezier curve palettes.
+* blend:         Functions for blending colors.
+* conv:          Conversions between color spaces and representations.
+* css:           CSS named colors.
+* dist:          Color distance measures. 
+* gen:           Palette and gradient generation functions.
+* masterpalette: Provides the MasterPalette class and utilities.
+* pals.\*:        Various predefined color palettes.
+* sort:          Functions for sorting palettes by various criteria. 
+* spectra.\*:     Various approximations of the visual spectrum. 
+* theory:        Functions for traditional color theory palettes.
+* util:          Utility functions.
+* wcag:          Web Content Accessibility Guidelines color contrast.
 
 
 Status Note
