@@ -30,6 +30,18 @@ Installation
 
     pip install colorways
 
+Jupyter Notebook Demos
+======================
+
+Colorways comes with many Jupyter notebooks that demonstrate the library's 
+functionality and illustrate its usage. These require that the ipycanvas and 
+ipywidget packages be installed. To access these notebooks, run the following
+command after installation and, in your current directory, a new directory 
+called `demo_notebooks` will be created. It will contain the notebooks as well
+as several supporting files.
+
+    python -m colorways.makedemos
+
 Conventions
 ===========
 
@@ -76,17 +88,11 @@ Modules
 * gen:           Palette and gradient generation functions.
 * masterpalette: Provides the MasterPalette class and utilities.
 * pals.\*:        Various predefined color palettes.
+* p3:            Supporting functions for Processing's Python Mode.
 * sort:          Functions for sorting palettes by various criteria. 
 * spectra.\*:     Various approximations of the visual spectrum. 
 * theory:        Functions for traditional color theory palettes.
 * util:          Utility functions.
 * wcag:          Web Content Accessibility Guidelines color contrast.
 
-
-Status Note
-===========
-
-My original work on this was lost in a disk crash. In all, I lost many hours of work and the git repo. The intial commit of this repo was from a tarball I created to share with one other developer who I sometimes collaborate with. 
-
-Documentation is incomplete. There are, however, a bunch of jupyter notebooks in the demo_notebooks directory. These cover most of the library's functionality.
 

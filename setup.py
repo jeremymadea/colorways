@@ -8,7 +8,7 @@ long_description = (this_directory / "README.md").read_text()
 
 
 setup(name='colorways',
-    version='0.9.2',
+    version='0.9.3',
     description='A Python library for procedural generation of color palettes, color manipulation, and color analysis.',
     long_description=long_description,
     long_description_content_type='text/markdown',
