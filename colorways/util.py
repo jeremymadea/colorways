@@ -31,6 +31,11 @@ Exports:
         randvec3_partial(vec3)
         mix_vec3(base, mixin, weight)
         randmix_vec3(base, weight)
+        vec3_between(v, v1, v2):
+        all_between(pal, v1, v2):
+        hue_between(h, h1, h2):
+        hue_vec3_between(v, v1, v2):
+        hue_all_between(pal, v1, v2):
 
     Coordinate conversions:
         rect(r, theta, unit='rad')
@@ -47,6 +52,8 @@ __all__ = [
     'lspace', 'circ_lspace', 'hxx_lspace', 'fspace',
     'apply_to_chans', 'modify_palette', 'pal_extract_chans',
     'randvec3', 'randvec3mono', 'randvec3_partial', 'mix_vec3', 'randmix_vec3',
+    'vec3_between', 'all_between', 'hue_between', 'hue_vec3_between',
+    'hue_all_between',
     'rect', 'polar',
     'circ_mean', 'luma',
     ]
@@ -112,8 +119,6 @@ def _lerp(a, b, t):
     """Undocumented"""
     return a + t*(b-a)
 
-
-
 def lspace(u, v, n=2):
     """Undocumented"""
     if n < 2: n = 2
@@ -146,8 +151,6 @@ def circ_lspace(a, b, n, bigarc=False):
             return [(a+d)%1 for d in deltas]
     else: 
         return [e[0] for e in lspace([a], [b], n)]
-
-
 
 def hxx_lspace(u, v, n, bigarc=False): 
     h_chan = circ_lspace(u[0], v[0], n, bigarc)
@@ -235,8 +238,6 @@ def mix_vec3(base, mixin, weight):
     """
     return [ weight*base[i] + (1-weight)*mixin[i] for i in range(len(base)) ]
 
-
-
 def randmix_vec3(base, weight):
     """
     Takes a base vec3 and a weight and returns a vec3 whose components are the 
@@ -244,7 +245,72 @@ def randmix_vec3(base, weight):
     """
     return mix_vec3(base, randvec3(), weight)
 
+def vec3_between(v, v1, v2):
+    """
+    Takes three vec3s. If each component of the first vector is greater than
+    or equal to the minimum and less than or equal to the maximum corresponding
+    components of the second and third vectors, then it returns True.
+    Otherwise it returns False.
+    """
+    vmin = [ min(v1[0],v2[0]), min(v1[1],v2[1]), min(v1[2],v2[2]) ]  
+    vmax = [ max(v1[0],v2[0]), max(v1[1],v2[1]), max(v1[2],v2[2]) ]  
+    if (    v[0] >= vmin[0] and v[0] <= vmax[0]
+        and v[1] >= vmin[1] and v[1] <= vmax[1]
+        and v[2] >= vmin[2] and v[2] <= vmax[2]):
+        return True
+    return False
 
+def all_between(pal, v1, v2):
+    """
+    Takes a palette and two vectors. Returns a palette, possibly empty,
+    consisting of each vec3 in palette that is between the two vectors 
+    according to the behavior of vec3_between. 
+    """
+    vmin = [ min(v1[0],v2[0]), min(v1[1],v2[1]), min(v1[2],v2[2]) ]  
+    vmax = [ max(v1[0],v2[0]), max(v1[1],v2[1]), max(v1[2],v2[2]) ]  
+    def between(v, va, vb):
+        if (    v[0] >= vmin[0] and v[0] <= vmax[0]
+            and v[1] >= vmin[1] and v[1] <= vmax[1]
+            and v[2] >= vmin[2] and v[2] <= vmax[2]):
+            return v
+        return None
+    return [ v for v in pal if between(v, vmin, vmax) ] 
+
+def hue_between(h, h1, h2):
+    """
+    Takes three reals assumed to be angle measurements in turns. 
+    Returns True if the first argument is between the second and third on the 
+    shortest path between the two. Returns False otherwise. 
+    """
+    hmin, hmax = min(h1,h2), max(h1,h2)
+    if hmax-hmin == 0.5: return True
+    if hmax-hmin > 0.5 and (h <= hmin or h >= hmax):
+        return True
+    if h >= hmin and h <= hmax:
+        return True
+    return False
+
+def hue_vec3_between(v, v1, v2):
+    """Undocumented"""
+    vmin = [ None, min(v1[1],v2[1]), min(v1[2],v2[2]) ]  
+    vmax = [ None, max(v1[1],v2[1]), max(v1[2],v2[2]) ]  
+    if (    hue_between(v[0], v1[0], v2[0])
+        and v[1] >= vmin[1] and v[1] <= vmax[1]
+        and v[2] >= vmin[2] and v[2] <= vmax[2]):
+        return True
+    return False
+
+def hue_all_between(pal, v1, v2):
+    """Undocumented"""
+    vmin = [ None, min(v1[1],v2[1]), min(v1[2],v2[2]) ]  
+    vmax = [ None, max(v1[1],v2[1]), max(v1[2],v2[2]) ]  
+    def between(v, va, vb):
+        if (    hue_betwee(v, va, vb)
+            and v[1] >= vmin[1] and v[1] <= vmax[1]
+            and v[2] >= vmin[2] and v[2] <= vmax[2]):
+            return v
+        return None
+    return [ v for v in pal if between(v, vmin, vmax) ] 
 
 # Coordinate conversion
 
