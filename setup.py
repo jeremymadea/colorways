@@ -17,4 +17,5 @@ setup(name='colorways',
     author_email='jdmadea@gmail.com',
     license='MIT',
     packages=find_packages(),
+    package_data={"colorways": ["demos.zip"]},
     zip_safe=False)
