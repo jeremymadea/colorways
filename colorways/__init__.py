@@ -4,6 +4,15 @@ from .gen import *
 from .sort import * 
 from .util import *
 from .wcag import * 
+from .version import __version__
+
+# Not imported by default 
+#bezier.py
+#blend.py
+#css.py
+#masterpalette.py
+#ryb.py
+#theory.py
 
 """Colorways facilitates procedural color palette and gradient generation.
 
