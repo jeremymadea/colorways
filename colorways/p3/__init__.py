@@ -1,4 +1,4 @@
-from ..conv import hsl_to_hsv
+from ..conv import hsl2hsv
 
 """This module contains utilities for Processing's Python mode."""
 
@@ -44,7 +44,7 @@ def get_color(palette, i, mode=None):
         A Processing color object.
     """
     if mode is None:
-        vec3 = hsl_to_hsv(palette[i])
+        vec3 = hsl2hsv(palette[i])
         return as_color_in_mode(vec3, HSB)
     return as_color_in_mode(palette[i], mode)
   
