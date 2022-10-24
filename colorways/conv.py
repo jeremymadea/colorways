@@ -3,7 +3,7 @@ from .internals import colpal_function, colpal_params_function, hexpal_function
 from .util import clamp01, turn2deg, turn2rad, mmult
 from .matrices import srgb_rgb2xyz, srgb_xyz2rgb 
 from .matrices import srgb_rgb2xyz_D50, srgb_xyz2rgb_D50 
-from math import pi, sqrt, atan2, degrees, radians, cos, sin
+from math import tau, pi, sqrt, atan2, degrees, radians, cos, sin
 
 """
 This module provides conversion functions for colors and palettes.
@@ -406,7 +406,7 @@ def lab2lch(lab):
     """Interprets the given vec3 as L*a*b* and converts it to L*C*h(ab) """
     (l,a,b) = lab
     c = sqrt(a**2 + b**2) 
-    h = atan2(b,a) / (2*pi)
+    h = atan2(b,a) / tau 
     return [l,c,h]
 
 @colpal_function

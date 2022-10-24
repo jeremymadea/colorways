@@ -1,6 +1,8 @@
+# See https://bottosson.github.io/
+
 from .util import cbrt
 """
-Oklab colorspace functions. 
+Okla colorspace functions. 
 """
 
 __all__ = [
