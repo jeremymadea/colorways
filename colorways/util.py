@@ -40,6 +40,7 @@ Exports:
     Coordinate conversions:
         rect(r, theta, unit='rad')
         polar(x, y, unit='rad')
+        
 
     Miscellaneous:
         circ_mean(angles, unit='rad')
@@ -54,7 +55,7 @@ __all__ = [
     'randvec3', 'randvec3mono', 'randvec3_partial', 'mix_vec3', 'randmix_vec3',
     'vec3_between', 'all_between', 'hue_between', 'hue_vec3_between',
     'hue_all_between',
-    'rect', 'polar',
+    'rect', 'polar', 'turn2deg', 'turn2rad',
     'circ_mean', 'luma',
     ]
 
@@ -341,6 +342,14 @@ def polar(x, y, unit='rad'):
     elif unit == 'deg':
         theta = theta * 360/tau
     return r, theta
+
+def turn2deg(t):
+    """Converts turns to degrees."""
+    return t*360 % 360
+
+def turn2rad(t):
+    """Converts turns to radians."""
+    return t*tau
 
 
 # Miscellaneous

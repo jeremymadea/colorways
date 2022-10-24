@@ -1,6 +1,7 @@
 import colorsys
-from .internals import colpal_function, hexpal_function
-from .util import clamp01
+from .internals import colpal_function, colpal_params_function, hexpal_function
+from .util import clamp01, turn2deg, turn2rad
+from math import pi, sqrt, atan2, degrees, radians, cos, sin
 
 """
 This module provides conversion functions for colors and palettes.
@@ -10,69 +11,159 @@ Exports:
     which is expected to be either a 3-element list (i.e. a color)
     or a list of colors (i.e. a palette.) 
     
-    hsl2hsv hsl2hwb hsl2rgb hsl2lab 
-    hsv2hsl hsv2hwb hsv2rgb hsv2lab 
-    hwb2hsl hwb2hsv hwb2rgb hwb2lab 
-    rgb2hsl rgb2hsv rgb2hwb rgb2lab 
-    lab2hsl lab2hsv lab2hwb lab2rgb 
+    Conversions to and from XYZ. These are used internally as interim 
+    conversions between L*a*b* and RGB colorspaces. 
+ 
+        xyz2lab lab2xyz rgb2xyz xyz2rgb
 
-    hex2hsl hex2hsv hex2hwb hex2rgb hex2lab 
-    hsl2hex hsv2hex hwb2hex rgb2hex lab2hex 
+    Conversions between RGB, HSL, HSV, HWB, L*a*b*, and L*C*h(ab) colorspaces.
+    
+        hsl2hsv hsl2hwb hsl2rgb hsl2lab hsl2lch
+        hsv2hsl hsv2hwb hsv2rgb hsv2lab hsv2lch
+        hwb2hsl hwb2hsv hwb2rgb hwb2lab hwb2lch
+        rgb2hsl rgb2hsv rgb2hwb rgb2lab rgb2lch
+        lab2hsl lab2hsv lab2hwb lab2rgb lab2lch
+        lch2hsl lch2hsv lch2hwb lch2rgb lch2lab
 
-    bytes2norm
-    norm2bytes
-    hex2bytes
-    bytes2hex
+    Conversions between RGB hexcodes and HSL, HSV, HWB, L*a*b*, and L*C*h(ab)
 
-    rgb2hue
-    hxx_in_degpct
+        hex2hsl hex2hsv hex2hwb hex2rgb hex2lab hex2lch
+        hsl2hex hsv2hex hwb2hex rgb2hex lab2hex lch2hex
 
-    ]
+    Representation conversions. 
+        bytes2norm
+        rgb82rgb
+        norm2bytes
+        rgb2rgb8
+        hex2bytes
+        bytes2hex
+        hxx_in_degpct
+        rgb_in_percent
+
+    Miscellaneous conversions. 
+        rgb2hue
+
 
 """
 
 __all__ = [
-    'hsl2hsv', 'hsl2hwb', 'hsl2rgb', 'hsl2lab', 'hsl2hex', #'hsl2lch',
-    'hsv2hsl', 'hsv2hwb', 'hsv2rgb', 'hsv2lab', 'hsv2hex', #'hsv2lch',
-    'hwb2hsl', 'hwb2hsv', 'hwb2rgb', 'hwb2lab', 'hwb2hex', #'hwb2lch',
-    'rgb2hsl', 'rgb2hsv', 'rgb2hwb', 'rgb2lab', 'rgb2hex', #'rgb2lch',
-    'lab2hsl', 'lab2hsv', 'lab2hwb', 'lab2rgb', 'lab2hex', #'lab2lch',
-#   'lch2hsl', 'lch2hsv', 'lch2hwb', 'lch2rgb', 'lch2lab', 'lch2hex',
-    'hex2hsl', 'hex2hsv', 'hex2hwb', 'hex2rgb', 'hex2lab', #'hex2lch',
+    'xyz2lab', 'lab2xyz', 'rgb2xyz', 'xyz2rgb',
+
+    'hsl2hsv', 'hsl2hwb', 'hsl2rgb', 'hsl2lab', 'hsl2lch',
+    'hsv2hsl', 'hsv2hwb', 'hsv2rgb', 'hsv2lab', 'hsv2lch',
+    'hwb2hsl', 'hwb2hsv', 'hwb2rgb', 'hwb2lab', 'hwb2lch',
+    'rgb2hsl', 'rgb2hsv', 'rgb2hwb', 'rgb2lab', 'rgb2lch',
+    'lab2hsl', 'lab2hsv', 'lab2hwb', 'lab2rgb', 'lab2lch',
+    'lch2hsl', 'lch2hsv', 'lch2hwb', 'lch2rgb', 'lch2lab', 
+
+    'hex2hsl', 'hex2hsv', 'hex2hwb', 'hex2rgb', 'hex2lab', 'hex2lch',
+    'hsl2hex', 'hsv2hex', 'hwb2hex', 'rgb2hex', 'lab2hex', 'lch2hex',
 
     'bytes2norm',
+    'rgb82rgb',
     'norm2bytes',
+    'rgb2rgb8',
     'hex2bytes',
     'bytes2hex',
-
-    'rgb2hue',
+    'rgb_in_percent',
     'hxx_in_degpct',
 
+    'rgb2hue',
+    
     ]
 
 
-#def hsl2lch(hsl):
-#def hwb2lch(hwb):
-#def lab2lch(lab):
+########################################
+#
+# Conversions between RGB and XYZ and between L*a*b* and XYZ.  
+# These are core functions needed for interim conversion between RGB and L*a*b*. 
+# 
+# TODO: Enable different luminants and observation angles. 
+
+@colpal_function
+def rgb2xyz(rgb):
+    """Interprets the given vec3 as RGB and converts it to XYZ"""
+    # This is a necessary initial step for RGB->L*a*b*
+    # http://www.brucelindbloom.com/index.html?Eqn_RGB_to_XYZ.html
+    # https://www.easyrgb.com/en/math.php
+    tmp = list(rgb)
+    for i in range(3):  
+        if tmp[i] > 0.04045: 
+            tmp[i] = ((tmp[i] + 0.055) / 1.055) ** 2.4
+        else: 
+            tmp[i] /= 12.92
+        
+        tmp[i] *= 100
+    (r, g, b) = tmp
+    # Observer = 2 degrees, Illuminant = D65
+    return [
+        (r * 0.4124564) + (g * 0.3575761) + (b * 0.1804375),
+        (r * 0.2126729) + (g * 0.7151522) + (b * 0.0721750),
+        (r * 0.0193339) + (g * 0.1191920) + (b * 0.9503041)]
+
+
+
+@colpal_function
+def xyz2rgb(xyz):
+    """Interprets the given vec3 as XYZ and converts it to RGB"""
+    # This is a necessary final step for L*a*b*->RGB
+    # http://www.brucelindbloom.com/index.html?Eqn_XYZ_to_RGB.html
+    # https://www.easyrgb.com/en/math.php
+    (x, y, z) = xyz
+    x /= 100.0
+    y /= 100.0
+    z /= 100.0
+    rgb = [ 
+        (x * 3.2404542)  + (y * -1.5371385) + (z * -0.4985314),
+        (x * -0.9692660) + (y * 1.8760108)  + (z * 0.0415560),
+        (x * 0.0556434)  + (y * -0.2040259) + (z * 1.0572252)]
+    for i in range(3):
+        if rgb[i] > 0.0031308:
+            rgb[i] = 1.055 * (rgb[i]**(1.0/2.4)) - 0.055
+        else:
+            rgb[i] *= 12.92
+        rgb[i] = min(max(0.0, rgb[i]), 1.0)
+    return rgb
+
+
+
+@colpal_function
+def xyz2lab(xyz):
+    """Interprets the given vec3 as XYZ and converts it to L*a*b*"""
+    # https://www.easyrgb.com/en/math.php
+    tmp = list(xyz)
+    tmp[0] /= 95.047 
+    tmp[1] /= 100.000
+    tmp[2] /= 108.883
+    for i in range(3):
+        if tmp[i] > 0.008856:
+            tmp[i] **= (1.0/3.0)
+        else:
+            tmp[i] = (7.787 * tmp[i]) + (16.0/116.0)
+    return [
+        (116 * tmp[1]) - 16, 
+        500 * (tmp[0] - tmp[1]), 
+        200 * (tmp[1] - tmp[2])] 
+        
     
-
-
-# Range conversions between [0,1] and [0,255]
-
 @colpal_function
-def bytes2norm(vec):
-    """
-    Converts list of unsigned bytes to floats in the range [0,1].
-    """
-    return [c/255.0 for c in vec]
-
-
-@colpal_function
-def norm2bytes(vec):
-    """
-    Converts list of floats in the range [0,1] to ints in the range [0,255]. 
-    """
-    return [ round(x * 255) for x in vec ]
+def lab2xyz(lab):
+    """Interprets the given vec3 as L*a*b* and converts it to XYZ"""
+    # https://www.easyrgb.com/en/math.php
+    y = (lab[0] + 16) / 116.0
+    x = lab[1] / 500.0 + y
+    z = y - lab[2] / 200.0
+    xyz = [x, y, z]
+    for i in range(3):
+        cube = xyz[i] ** 3
+        if cube > 0.008856: 
+            xyz[i] = cube
+        else: 
+            xyz[i] = (xyz[i] - 16/116.0) / 7.787
+    xyz[0] = xyz[0] * 95.047
+    xyz[1] = xyz[1] * 100.000
+    xyz[2] = xyz[2] * 108.883
+    return xyz
 
 
 
@@ -162,7 +253,7 @@ def lab2hex(lab):
     return bytes2hex( norm2bytes( lab2rgb( lab )))
 
 
-
+@colpal_function
 def rgb2hex(rgb):
     """
     Converts an HSL vec3 to a hex string in #RRGGBB format.
@@ -219,93 +310,6 @@ def hsv2rgb(hsv):
 def hsl2rgb(hsl):
     """Interprets the given vec3 as HSL and converts it to RGB"""
     return list(colorsys.hls_to_rgb(hsl[0], hsl[2], hsl[1]))
-
-
-
-@colpal_function
-def rgb2xyz(rgb):
-    """Interprets the given vec3 as RGB and converts it to XYZ"""
-    # This is a necessary initial step for RGB->L*a*b*
-    # http://www.brucelindbloom.com/index.html?Eqn_RGB_to_XYZ.html
-    # https://www.easyrgb.com/en/math.php
-    tmp = list(rgb)
-    for i in range(3):  
-        if tmp[i] > 0.04045: 
-            tmp[i] = ((tmp[i] + 0.055) / 1.055) ** 2.4
-        else: 
-            tmp[i] /= 12.92
-        
-        tmp[i] *= 100
-    (r, g, b) = tmp
-    # Observer = 2 degrees, Illuminant = D65
-    return [
-        (r * 0.4124564) + (g * 0.3575761) + (b * 0.1804375),
-        (r * 0.2126729) + (g * 0.7151522) + (b * 0.0721750),
-        (r * 0.0193339) + (g * 0.1191920) + (b * 0.9503041)]
-
-
-
-@colpal_function
-def xyz2rgb(xyz):
-    """Interprets the given vec3 as XYZ and converts it to RGB"""
-    # This is a necessary final step for L*a*b*->RGB
-    # http://www.brucelindbloom.com/index.html?Eqn_XYZ_to_RGB.html
-    # https://www.easyrgb.com/en/math.php
-    (x, y, z) = xyz
-    x /= 100.0
-    y /= 100.0
-    z /= 100.0
-    rgb = [ 
-        (x * 3.2404542)  + (y * -1.5371385) + (z * -0.4985314),
-        (x * -0.9692660) + (y * 1.8760108)  + (z * 0.0415560),
-        (x * 0.0556434)  + (y * -0.2040259) + (z * 1.0572252)]
-    for i in range(3):
-        if rgb[i] > 0.0031308:
-            rgb[i] = 1.055 * (rgb[i]**(1.0/2.4)) - 0.055
-        else:
-            rgb[i] *= 12.92
-        rgb[i] = min(max(0.0, rgb[i]), 1.0)
-    return rgb
-
-
-
-@colpal_function
-def xyz2lab(xyz):
-    """Interprets the given vec3 as XYZ and converts it to L*a*b*"""
-    # https://www.easyrgb.com/en/math.php
-    tmp = list(xyz)
-    tmp[0] /= 95.047 
-    tmp[1] /= 100.000
-    tmp[2] /= 108.883
-    for i in range(3):
-        if tmp[i] > 0.008856:
-            tmp[i] **= (1.0/3.0)
-        else:
-            tmp[i] = (7.787 * tmp[i]) + (16.0/116.0)
-    return [
-        (116 * tmp[1]) - 16, 
-        500 * (tmp[0] - tmp[1]), 
-        200 * (tmp[1] - tmp[2])] 
-        
-    
-@colpal_function
-def lab2xyz(lab):
-    """Interprets the given vec3 as L*a*b* and converts it to XYZ"""
-    # https://www.easyrgb.com/en/math.php
-    y = (lab[0] + 16) / 116.0
-    x = lab[1] / 500.0 + y
-    z = y - lab[2] / 200.0
-    xyz = [x, y, z]
-    for i in range(3):
-        cube = xyz[i] ** 3
-        if cube > 0.008856: 
-            xyz[i] = cube
-        else: 
-            xyz[i] = (xyz[i] - 16/116.0) / 7.787
-    xyz[0] = xyz[0] * 95.047
-    xyz[1] = xyz[1] * 100.000
-    xyz[2] = xyz[2] * 108.883
-    return xyz
 
 
 
@@ -400,19 +404,125 @@ def hwb2lab(hwb):
     return hsv2lab(hwb2hsv(hwb))
 
 
-
-
-# Miscellaneous conversions. 
+@colpal_function
+def lab2lch(lab):
+    """Interprets the given vec3 as L*a*b* and converts it to L*C*h(ab) """
+    (l,a,b) = lab
+    c = sqrt(a**2 + b**2) 
+    h = atan2(b,a) / (2*pi)
+    return [l,c,h]
 
 @colpal_function
-def hxx_in_degpct(hxx):
+def lch2lab(lch):
+    """Interprets the given vec3 as L*C*h(ab) and converts it to L*a*b* """
+    (l,c,h) = lch
+    a = c * cos(turn2rad(h))
+    b = c * sin(turn2rad(h))
+    return [l, a, b]
+
+def hsl2lch(hsl):
+    """Interprets the given vec3 as HSL and converts it to L*C*h(ab) """
+    return lab2lch(hsl2lab(hsl))
+
+def hsv2lch(hsv):
+    """Interprets the given vec3 as HSV and converts it to L*C*h(ab) """
+    return lab2lch(hsv2lab(hsv))
+
+def hwb2lch(hwb):
+    """Interprets the given vec3 as HWB and converts it to L*C*h(ab) """
+    return lab2lch(hwb2lab(hwb))
+
+def rgb2lch(rgb):
+    """Interprets the given vec3 as RGB and converts it to L*C*h(ab) """
+    return lab2lch(rgb2lab(rgb))
+
+def hex2lch(hexstr):
+    """Converts the given RGB hexcode it to L*C*h(ab) """
+    return lab2lch(hex2lab(hexstr))
+
+def lch2rgb(lch):
+    """Interprets the given vec3 as L*C*h(ab) and converts it to RGB """
+    return lab2rgb(lch2lab(lch))
+
+def lch2hsl(lch):
+    """Interprets the given vec3 as L*C*h(ab) and converts it to HSL """
+    return lab2hsl(lch2lab(lch))
+
+def lch2hsv(lch):
+    """Interprets the given vec3 as L*C*h(ab) and converts it to HSV """
+    return lab2hsv(lch2lab(lch))
+
+def lch2hwb(lch):
+    """Interprets the given vec3 as L*C*h(ab) and converts it to HWB """
+    return lab2hwb(lch2lab(lch))
+
+def lch2hex(lch):
+    """
+    Interprets the given vec3 as L*C*h(ab) and converts it to an RGB hexcode. 
+    """
+    return lab2hex(lch2lab(lch))
+
+########################################
+#
+# Representation conversions. 
+#
+
+@colpal_function
+def bytes2norm(vec):
+    """
+    Converts list of unsigned bytes to floats in the range [0,1].
+    """
+    return [c/255.0 for c in vec]
+
+rgb82rgb = bytes2norm # Alias
+
+@colpal_function
+def norm2bytes(vec):
+    """
+    Converts list of floats in the range [0,1] to ints in the range [0,255]. 
+    """
+    return [ round(x * 255) for x in vec ]
+
+rgb2rgb8 = norm2bytes # Alias
+
+
+@colpal_params_function
+def hxx_in_degpct(hxx, decs=3):
+    """
+    Interprets given vec3 as an Hxx (HSL, HSV, HWB) and converts to a vec3 where
+    the H component is in degrees and the other components are in percentages.
+    The optional decs parameter (default:3) determines the number of decimal 
+    places in the returned components.
+    """
     (h, c1, c2) = hxx
     err = 10e-8 # TODO take a closer look at this.
-    return [ round(360*h+err), round(100*c1+err,3), round(100*c2+err,3) ]
+    return [ round(360*h+err,decs), 
+             round(100*c1+err,decs), round(100*c2+err,decs) ]
+
+@colpal_params_function
+def rgb_in_percent(rgb, decs=3):
+    """
+    Interprets given vec3 as an RGB value and converts to a vec3 where
+    the components are in percentages. The optional decs parameter (default:3) 
+    determines the number of decimal places in the returned components.
+    """
+    err = 10e-8 # TODO take a closer look at this.
+    return [ round(100*c+err,decs) for c in rgb ]
 
 
-@colpal_function
-def rgb2hue(rgb):
+
+########################################
+#
+# Miscellaneous conversions. 
+#
+
+@colpal_params_function
+def rgb2hue(rgb, unit='turn'):
+    """
+    Interprets given vec3 as an RGB and returns its hue. Questionable accuracy.
+    Optional unit argument specifies the unit the returned hue value is in. 
+    It can be 'turn' (the default), 'deg' or 'rad'.
+    """
     (r,g,b) = rgb
     mn = min(rgb)
     mx = max(rgb)
@@ -427,9 +537,10 @@ def rgb2hue(rgb):
     elif b == mx:
         hue = (2.0/3) + (r-g) * multiplier
 
-    if hue < 0: 
-        return hue + 1
-    elif hue > 1: 
-        return hue - 1
+    hue = hue % 1
 
+    if unit == 'deg':
+        return turn2deg(hue)
+    elif unit == 'rad':
+        return turn2rad(hue)
     return hue

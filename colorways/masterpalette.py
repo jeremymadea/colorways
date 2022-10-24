@@ -24,7 +24,7 @@ from .util import (
 
 """
 __all__ = [
-    'new_order_by_dist_closure'
+    'new_order_by_dist_closure',
     'MasterPalette'
 ]
 

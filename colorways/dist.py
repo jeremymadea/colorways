@@ -1,4 +1,4 @@
-from math import pi, sqrt, sin, cos, exp, atan2
+from math import tau, pi, sqrt, sin, cos, exp, atan2
 
 """
 This module provides functions for computing various distance measures 
@@ -26,7 +26,8 @@ __all__ = [
     'ciede2000',
     ]
 
-tau = 2*pi # Defining because python2's math module doesn't provide it. 
+# Not supporting python2 now 
+#tau = 2*pi # Defining because python2's math module doesn't provide it. 
 
 # Distance functions
 # TODO: This module needs some clean up. euclidean_rgb() isn't limited to 
