@@ -44,7 +44,9 @@ Exports:
 
     Miscellaneous:
         circ_mean(angles, unit='rad')
-        luma(rgb, use='y601'): 
+        luma(rgb, use='y601')
+        cbrt(n)
+        mmult(abc, m):
 """
 
 __all__ = [
@@ -56,7 +58,7 @@ __all__ = [
     'vec3_between', 'all_between', 'hue_between', 'hue_vec3_between',
     'hue_all_between',
     'rect', 'polar', 'turn2deg', 'turn2rad',
-    'circ_mean', 'luma',
+    'circ_mean', 'luma', 'cbrt', 'mmult'
     ]
 
 
@@ -385,3 +387,19 @@ def luma(rgb, use='y601'):
     if use == 'y2020': coeffs = y2020
     return (rgb[0]*coeffs[0] + rgb[1]*coeffs[1] + rgb[2]*coeffs[2])
 
+
+def cbrt(n):
+    """Returns the real cube root of n."""
+    if n < 0: 
+        return -((-n)**(1/3))
+    return n**(1/3)
+
+
+def mmult(abc, m):
+    """Multiplies a 1x3 by a 3x3 matrix. Used in colorspace conversions."""
+    (a,b,c) = abc
+    return [
+         a * m[0][0] + b * m[0][1] + c * m[0][2], 
+         a * m[1][0] + b * m[1][1] + c * m[1][2], 
+         a * m[2][0] + b * m[2][1] + c * m[2][2]  
+    ]

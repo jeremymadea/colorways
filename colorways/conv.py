@@ -1,6 +1,8 @@
 import colorsys
 from .internals import colpal_function, colpal_params_function, hexpal_function
-from .util import clamp01, turn2deg, turn2rad
+from .util import clamp01, turn2deg, turn2rad, mmult
+from .matrices import srgb_rgb2xyz, srgb_xyz2rgb 
+from .matrices import srgb_rgb2xyz_D50, srgb_xyz2rgb_D50 
 from math import pi, sqrt, atan2, degrees, radians, cos, sin
 
 """
@@ -94,13 +96,7 @@ def rgb2xyz(rgb):
             tmp[i] /= 12.92
         
         tmp[i] *= 100
-    (r, g, b) = tmp
-    # Observer = 2 degrees, Illuminant = D65
-    return [
-        (r * 0.4124564) + (g * 0.3575761) + (b * 0.1804375),
-        (r * 0.2126729) + (g * 0.7151522) + (b * 0.0721750),
-        (r * 0.0193339) + (g * 0.1191920) + (b * 0.9503041)]
-
+    return mmult(tmp, srgb_rgb2xyz)
 
 
 @colpal_function
@@ -113,10 +109,7 @@ def xyz2rgb(xyz):
     x /= 100.0
     y /= 100.0
     z /= 100.0
-    rgb = [ 
-        (x * 3.2404542)  + (y * -1.5371385) + (z * -0.4985314),
-        (x * -0.9692660) + (y * 1.8760108)  + (z * 0.0415560),
-        (x * 0.0556434)  + (y * -0.2040259) + (z * 1.0572252)]
+    rgb = mmult([x,y,z], srgb_xyz2rgb)
     for i in range(3):
         if rgb[i] > 0.0031308:
             rgb[i] = 1.055 * (rgb[i]**(1.0/2.4)) - 0.055
