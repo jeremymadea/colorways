@@ -44,6 +44,8 @@ Exports:
 
     Miscellaneous conversions. 
         rgb2hue
+        srgb2linsrgb(rgb):
+        linsrgb2srgb(rgb):
 
 
 """
@@ -71,6 +73,8 @@ __all__ = [
     'hxx_in_degpct',
 
     'rgb2hue',
+    'srgb2linsrgb',
+    'linsrgb2srgb',
     
     ]
 
@@ -537,3 +541,16 @@ def rgb2hue(rgb, unit='turn'):
     elif unit == 'rad':
         return turn2rad(hue)
     return hue
+
+@colpal_function
+def srgb2linsrgb(rgb):
+    """Converts sRGB to linear sRGB"""
+    return [ 
+        ((c + 0.055) / 1.055)**2.4 if c > 0.04045 else c / 12.92 
+        for c in rgb ]
+
+@colpal_function
+def linsrgb2srgb(rgb):
+    return [
+        c * 12.92 if c < 0.0031308 else (1 + 0.055) * c**(1/2.4) - 0.055
+        for c in rgb ]
