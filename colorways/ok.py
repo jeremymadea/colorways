@@ -1,6 +1,7 @@
 # See https://bottosson.github.io/
 
 from .util import cbrt
+from .conv import lab2lch, lch2lab
 """
 Okla colorspace functions. 
 """
@@ -10,8 +11,13 @@ __all__ = [
     'oklab2xyz',
     'lsrgb2oklab', 
     'oklab2lsrgb', 
+    'oklab2oklch',
+    'oklch2oklab',
 
 ]
+
+oklab2oklch = lab2lch
+oklch2oklab = lch2lab
 
 def xyz2oklab(xyz):
     (x,y,z) = xyz
